@@ -1,0 +1,11 @@
+@keyframes slidingBg {
+    0% {
+      background-position: 0% 100%;
+    }
+    50% {
+      background-position: 100% 49%;
+    }
+    100% {
+      background-position: 0% 52%;
+    }
+  }

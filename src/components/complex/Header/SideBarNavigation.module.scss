@@ -1,0 +1,44 @@
+@keyframes slideInLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 1);
+  transform: translateX(-100%);
+  animation: slideInLeft 0.3s alternate both;
+  min-width: 200px;
+
+  .inner {
+    padding: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+
+    .navItem {
+      list-style: none;
+      &Link {
+        text-decoration: none;
+        color: #606060;
+        font-size: 1.0625rem;
+        display: block;
+        padding: 9.5px;
+        transition: box-shadow 0.3s;
+
+        &Active {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

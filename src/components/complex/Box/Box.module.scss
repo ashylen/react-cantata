@@ -1,0 +1,23 @@
+.wrapper {
+  margin: 30px 0 20px;
+
+  & .header {
+    font-size: 1.4375rem;
+    line-height: 35px;
+  }
+
+  & .text {
+    color: #acacac;
+    font-size: 0.875rem;
+    line-height: 24px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    word-break: break-all;
+  }
+
+  & .additionalContent {
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+  }
+}

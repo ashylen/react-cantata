@@ -1,0 +1,40 @@
+@import '../../../utilities/CSS/variables.module.scss';
+
+.wrapper {
+  margin: 15px 0 0;
+
+  .title {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.651);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 30px;
+  }
+
+  .subText {
+    @extend .title;
+    margin-top: 0;
+    color: rgb(0, 0, 0);
+    word-break: break-word;
+  }
+}
+
+.secondaryWrapper {
+  margin: 15px 0 0;
+  max-width: 396px;
+
+  .title {
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.651);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 30px;
+  }
+
+  .subText {
+    @extend .title;
+    margin-top: 0;
+    color: rgb(0, 0, 0);
+    word-break: break-word;
+  }
+}

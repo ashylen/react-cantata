@@ -1,0 +1,1 @@
+export const width1024 = 1024;

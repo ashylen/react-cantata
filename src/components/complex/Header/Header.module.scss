@@ -1,0 +1,30 @@
+@import '../../../utilities/CSS/Animations/fadeIn.modules.scss';
+@import '../../../utilities/CSS/Animations/fadeSlideInLeft.modules.scss';
+
+.wrapper {
+  position: relative;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100vh;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: fadeIn 0.5s ease-in 0.3s alternate both;
+  z-index: 9;
+
+  .logoWrapper {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -35%);
+
+    animation: fadeSlideInLeft 1s;
+
+    .logo {
+      width: 100%;
+      min-width: 250px;
+    }
+  }
+}

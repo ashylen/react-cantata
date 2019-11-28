@@ -1,0 +1,109 @@
+@import '../../../utilities/CSS/variables.module.scss';
+@import '../../../utilities/CSS/Animations/fadeIn.modules.scss';
+@import '../../../utilities/CSS/Animations/fadeSlideIn.modules.scss';
+
+.wrapperOuter {
+  z-index: 2000;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .wrapper {
+    position: fixed;
+    overflow: auto;
+
+    max-height: 500px;
+    height: 95vh;
+    max-width: 485px;
+    width: 90vw;
+    padding: 25px;
+    top: 2%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+
+    background-color: white;
+    box-shadow: 0 20px 40px -5px rgba(#abacac, 0.3);
+    z-index: 10;
+
+    h2 {
+      margin: 0 0 3px 0;
+      text-align: left;
+
+      overflow: auto;
+      max-width: 100%;
+      max-height: 43px;
+      word-break: break-all;
+    }
+
+    .closeButton {
+      width: 27px;
+      height: 27px;
+      background: transparent;
+      border: 1px solid #abacac;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      z-index: 2;
+
+      &:hover {
+        background: #abacac;
+        &::before,
+        &::after {
+          background: #fff;
+        }
+      }
+
+      &::before,
+      &::after {
+        content: '';
+        width: 16px;
+        height: 2px;
+        position: absolute;
+        background: #abacac;
+        display: block;
+        top: 47%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: 0 auto;
+        transform-origin: 50%;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+
+    @media only screen and (min-width: $mobile-md) {
+      max-height: unset;
+      height: unset;
+      overflow: initial;
+    }
+
+    @media only screen and (min-width: $mobile-lg) {
+      top: 10%;
+    }
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+}

@@ -1,0 +1,160 @@
+@import '../../../utilities/CSS/variables.module.scss';
+@import '../../../utilities/CSS/Animations/slidingBg.modules.scss';
+@import '../../../utilities/CSS/Animations/pulse.modules.scss';
+
+$bg-color: #f5f6f6;
+
+.button {
+  display: inline-block;
+  max-width: 196px;
+  width: 100%;
+  padding: 20px 12px;
+  border: 1px solid $border-color;
+  z-index:1;
+
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  &:hover {
+    background-image: linear-gradient(
+      222deg,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.3),
+      rgba(0, 0, 0, 0)
+    );
+    background-size: 500% 500%;
+    animation: slidingBg 8s ease infinite;
+    border: 1px solid #000;
+  }
+
+  & .text {
+    position: relative;
+    word-break:break-word;
+
+
+    &:after,
+    &:before {
+      right: -20px;
+      content: "";
+      height: 1px;
+      width: 5px;
+      position: absolute;
+      pointer-events: none;
+      background-color: #000;
+      background-color: #000;
+    }
+
+    &:after {
+      top: 44%;
+      transform: rotate(45deg);
+    }
+    &:before {
+      top: 63%;
+      transform: rotate(-45deg);
+    }
+  }
+
+  & .invertText {
+    filter: invert(100%);
+  }
+}
+
+.secondary {
+  display: inline-block;
+  max-width: 196px;
+  width: 100%;
+  padding: 20px 12px;
+
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.3s, border-color 0.3s;
+
+  border: 1px solid transparent;
+  background-position: center center;
+  background-repeat: repeat;
+  background-size: 110%;
+
+  transition: background-size 0.3s, background-color 0.3s, border-color 0.3s;
+
+  .invertText {
+    filter: invert(100%);
+  }
+
+  &:hover {
+    background-size: 130%;
+    border: 1px solid #d1d1d1;
+  }
+
+  & .text {
+    position: relative;
+    color: #000;
+
+    &:after,
+    &:before {
+      content: initial;
+    }
+  }
+}
+
+.buttonFixed {
+  @extend .button;
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  background-color: #fff;
+  box-shadow: 0 0 0 0 rgba($border-color, 0.5);
+  animation: pulse 1.5s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s border-color 0.3s;
+
+  &:hover {
+    animation: none;
+    background: $bg-color;
+    border-color: transparent;
+
+    & .text {
+      color: $border-color;
+    }
+  }
+
+  & .text {
+    color: $border-color;
+    display: block;
+    font-size: 1.15rem;
+    &:after,
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.absoluteTopRight{
+  @extend .button;
+  position:absolute;
+  top:10px;
+  right: 10px;
+  padding: 3px;
+  max-width: 100px;
+
+  & span:before,
+  span:after{
+    display:none;
+  }
+}

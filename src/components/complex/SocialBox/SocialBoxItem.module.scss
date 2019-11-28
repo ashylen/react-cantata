@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px 3px;
+
+  &:first-of-type {
+    svg {
+      font-size: 1.3em;
+    }
+  }
+
+  .text {
+    color: #999999;
+    font-size: 0.75rem;
+    margin-left: 10px;
+  }
+}
