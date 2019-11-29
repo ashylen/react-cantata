@@ -1,30 +1,182 @@
-@import '../../../utilities/CSS/Animations/fadeIn.modules.scss';
-@import '../../../utilities/CSS/Animations/fadeSlideInLeft.modules.scss';
+@import '../../../utilities/CSS/variables.module.scss';
 
-.wrapper {
-  position: relative;
+@keyframes slideInLTR {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
 
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  height: 100vh;
-  background-position: center center;
-  background-repeat: no-repeat;
+@keyframes slideInBTT {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    transform: translate(75%, -50%);
+  }
+}
+
+.homePageHeader {
+  min-height: 100vh;
+  background: url('../../../assets/images/header-bg.jpg');
+  background-position: center;
   background-size: cover;
-  animation: fadeIn 0.5s ease-in 0.3s alternate both;
-  z-index: 9;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: #000;
+    opacity: 0.1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+  }
 
   .logoWrapper {
     position: absolute;
-    top: 35%;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, -35%);
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    animation: fadeIn 1s both, slideLeft 1s 1s both;
 
-    animation: fadeSlideInLeft 1s;
-
-    .logo {
-      width: 100%;
-      min-width: 250px;
+    @media (max-width: $mobile-lg) {
+      position: relative;
+      left: auto;
+      top: auto;
+      transform: none;
+      animation: fadeIn 1s both;
     }
+
+    img {
+      @media (max-width: $mobile-sm) {
+        max-width: 150px;
+      }
+    }
+  }
+
+  .secondLayer {
+    content: '';
+    display: block;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 50%;
+    left: 0;
+    animation: slideInLTR 1s 1s both;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: $mobile-lg) {
+      position: relative;
+      height: auto;
+      width: auto;
+      margin-top: 30px;
+      animation: slideInBTT 1s both;
+    }
+
+    .text {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: 2px;
+      font-size: 1.5rem;
+      position: relative;
+
+      @media (max-width: $mobile-lg) {
+        text-align: center;
+        font-size: 1.3rem;
+      }
+
+      @media (max-width: $mobile-sm) {
+        text-align: left;
+        font-size: 1.2rem;
+      }
+
+      .callToAction {
+        margin-top: 10px;
+        background: transparent;
+        border: 2px solid #fff;
+        padding: 15px 20px;
+        color: #fff;
+        cursor: pointer;
+        transition: transform 0.3s;
+        font-size: 1.2rem;
+
+        &:hover {
+          transform: translateY(-5px);
+        }
+      }
+
+      &:after {
+        content: '';
+        width: 100px;
+        height: 2px;
+        background-color: #fff;
+        display: block;
+        top: -20px;
+        position: absolute;
+
+        @media (max-width: $mobile-lg) {
+          width: 50%;
+          height: 2px;
+          top: -20px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+}
+
+.mainHeader {
+  background-color: #161110;
+  display: flex;
+  height: 90px;
+}
+
+:global {
+  .gatsby-image-wrapper {
+    height: 100%;
   }
 }

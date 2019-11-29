@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 // Modules
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import YouTube from 'react-youtube';
 import { CSSTransition } from 'react-transition-group';
 import { bindActionCreators } from 'redux';
 
@@ -13,7 +12,6 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './LatterCompositionsView.module.scss';
 
-import { GetYouTubeVideoId } from '../../utilities/Functions/GetYouTubeVideoId';
 import { fetchCompositions as fetchCompositionsAction } from '../../actions/compositionActions';
 import {
   openCompositionsModal as openCompositionsModalAction,
@@ -50,26 +48,19 @@ class LatterCompositionsView extends Component {
         </CSSTransition>
         <article id="latter-compositions" className={styles.article}>
           <div className={styles.wrapper}>
-            <SectionTitle textCustomize='gradient'>Latter Compositions </SectionTitle>
+            <SectionTitle textCustomize="gradient">Okazy</SectionTitle>
             <SectionDescription>
-              &quot;It&#39;s Time&quot; was released as the lead single from Continued Silence and
-              It&#39;s Time, both extended plays preceding Night Visions&#39; release.
+              Poniżej przedstawione zostały poszczególne okazy, które udało się nam znaleźć.
             </SectionDescription>
 
             {compositions
               ? compositions.map(item => (
                   <div className={styles.inner} key={item.id}>
                     <div className={styles.description}>
-                      <TimelineHeader secondary title={item.date}>
+                      <TimelineHeader secondary title={item.family}>
                         {item.subText}
                       </TimelineHeader>
-                      <Box
-                        header={item.header}
-                        text={item.text}
-                        buttonText="Visit on iTunes"
-                        buttonHref={item.href}
-                        socialBoxContent={item}
-                      />
+                      <Box title={item.title} description={item.description} />
 
                       <Button
                         cssClass="absoluteTR"
@@ -81,8 +72,8 @@ class LatterCompositionsView extends Component {
                       </Button>
                     </div>
 
-                    <div className={styles.video}>
-                      {item.youTubeUrl && <YouTube videoId={GetYouTubeVideoId(item.youTubeUrl)} />}
+                    <div className={styles.image}>
+                      <img src={`${process.env.REACT_APP_API_URL}${item.image.url}`} />
                     </div>
                   </div>
                 ))
@@ -139,7 +130,4 @@ const mapDispatchToProps = dispatch => ({
   closeCompositionsModal: bindActionCreators(closeCompositionsModalAction, dispatch),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(LatterCompositionsView);
+export default connect(mapStateToProps, mapDispatchToProps)(LatterCompositionsView);

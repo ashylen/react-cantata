@@ -1,0 +1,174 @@
+@import '../../../utilities/CSS/variables.module.scss';
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(1000%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.navWrapper {
+  max-width: 1440px;
+  width: 90%;
+  margin: auto;
+}
+
+.brandWrapper {
+  a {
+    margin: 10px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+
+    span {
+      display: block;
+      padding: 10px;
+    }
+  }
+  .logo {
+    max-width: 70px;
+  }
+}
+
+.nav {
+  position: relative;
+  z-index: 100;
+
+  .burgerButton {
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 100%;
+    outline: none;
+    border: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 100;
+    padding: 0;
+    display: flex;
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.98);
+    animation: fadeIn 0.4s both;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+
+    .item {
+      transition: transform 0.3s, opacity 0.3s;
+
+      &:hover {
+        transform: translateY(-5px) scale(1.1);
+        opacity: 0.5;
+      }
+
+      a {
+        display: block;
+        padding: 30px 20px;
+        text-decoration: none;
+        color: #fff;
+        text-align: center;
+        animation: slideUp 0.4s forwards;
+        position: relative;
+        font-size: 1.6rem;
+
+        @media (max-width: $mobile-lg) {
+          @media (orientation: landscape) {
+            padding: 15px;
+          }
+        }
+
+        &:after {
+          content: '';
+          height: 1px;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          animation: fadeIn 0.4s 0.6s both;
+          width: 50px;
+          display: block;
+          background-color: #474747;
+        }
+      }
+
+      &:nth-of-type(1) {
+        a {
+          animation: slideUp 0.4s 0.1s both;
+        }
+      }
+      &:nth-of-type(2) {
+        a {
+          animation: slideUp 0.4s 0.2s both;
+        }
+      }
+      &:nth-of-type(3) {
+        a {
+          animation: slideUp 0.4s 0.3s both;
+        }
+      }
+      &:nth-of-type(4) {
+        a {
+          animation: slideUp 0.4s 0.4s both;
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.ham {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 400ms;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ham4 .top {
+  stroke-dasharray: 40 121;
+}
+.ham4 .bottom {
+  stroke-dasharray: 40 121;
+}
+.ham4.active .top {
+  stroke-dashoffset: -68px;
+}
+.ham4.active .bottom {
+  stroke-dashoffset: -68px;
+}
+
+.hamRotate {
+  &.active {
+    transform: rotate(45deg);
+  }
+}
+
+.line {
+  fill: none;
+  transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+  stroke: #fff;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}

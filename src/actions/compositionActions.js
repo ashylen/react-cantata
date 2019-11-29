@@ -16,12 +16,12 @@ export const fetchCompositions = () => dispatch => {
   dispatch({ type: FETCH_COMPOSITIONS_REQUEST });
 
   return axios
-    .get(`${process.env.REACT_APP_API_URL}/compositions`)
+    .get(`${process.env.REACT_APP_API_URL}/specimen`)
     .then(({ data }) => {
       dispatch({
         type: FETCH_COMPOSITIONS_SUCCESS,
         payload: {
-          data
+          data,
         },
       });
     })
@@ -31,8 +31,7 @@ export const fetchCompositions = () => dispatch => {
     });
 };
 
-
-export const addComposition = (itemContent) => dispatch => {
+export const addComposition = itemContent => dispatch => {
   dispatch({ type: ADD_COMPOSITIONS_REQUEST });
 
   return axios
@@ -43,7 +42,7 @@ export const addComposition = (itemContent) => dispatch => {
       dispatch({
         type: ADD_COMPOSITIONS_SUCCESS,
         payload: {
-          data
+          data,
         },
       });
     })
@@ -64,7 +63,7 @@ export const editComposition = (itemId, itemContent) => dispatch => {
         type: EDIT_COMPOSITIONS_SUCCESS,
         payload: {
           data,
-          itemId
+          itemId,
         },
       });
     })

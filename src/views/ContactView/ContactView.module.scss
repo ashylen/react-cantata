@@ -1,0 +1,92 @@
+@import '../../utilities/CSS/variables.module.scss';
+
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #edb575;
+
+  .firstSide {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex: 0 1 50%;
+
+    @media (max-width: $mobile-lg) {
+      flex: 0 1 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      font-weight: 400;
+    }
+  }
+
+  .secondSide {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding: 20px;
+    flex: 0 1 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    min-height: 400px;
+
+    @media (max-width: $mobile-lg) {
+      flex: 0 1 100%;
+    }
+
+    @media (max-width: $mobile-sm) {
+      font-size: 0.9rem;
+      min-height: 200px;
+    }
+
+    .contactInfoWrapper {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+
+      .contactInfo {
+        a {
+          display: flex;
+          align-items: center;
+          padding: 10px;
+          color: #fff;
+          font-size: 1.5rem;
+          text-align: center;
+          text-decoration: none;
+          transition: transform 0.3s, opacity 0.3s;
+
+          @media (max-width: $mobile-sm) {
+            font-size: 0.9rem;
+          }
+
+          &:hover {
+            transform: translateX(10px);
+            opacity: 0.5;
+          }
+        }
+
+        img {
+          max-width: 25px;
+          margin-right: 25px;
+
+          @media (max-width: $mobile-sm) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .wrapper {
+    max-width: 1400px;
+    width: 90%;
+    margin: 80px auto;
+
+    h1 {
+      text-align: center;
+    }
+  }
+}

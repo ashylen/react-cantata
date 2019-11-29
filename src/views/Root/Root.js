@@ -2,28 +2,27 @@ import React from 'react';
 
 // Modules
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 // Utilities
-import store from '../../store/index';
+import store from '../../store';
+import { routes } from '../../routes';
 import './index.css';
 
 // Components
-import Header from '../../components/complex/Header/Header';
-import DiscographyView from '../DiscographyView/DiscographyView';
-import ToursView from '../ToursView/ToursView';
-import LatterCompositionsView from '../LatterCompositionsView/LatterCompositionsView';
+import HomePageView from '../HomePageView/HomePageView';
+import ArticlesView from '../ArticlesView/ArticlesView';
 
 const Root = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>
-        <Header />
-        <section>
-          <DiscographyView />
-          <ToursView />
-          <LatterCompositionsView />
-        </section>
+        <Switch>
+          {/* <Route exact path={routes.login} component={LoginPage} /> */}
+          {/* <Route exact path={routes.home} render={() => <Redirect to="/notes" />} /> */}
+          <Route exact path={routes.home} component={HomePageView} />
+          <Route exact path={routes.articles} component={ArticlesView} />
+        </Switch>
       </Provider>
     </BrowserRouter>
   );

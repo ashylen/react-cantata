@@ -23,7 +23,6 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "2.1.1",
     "react-transition-group": "^4.2.2",
-    "react-youtube": "^7.9.0",
     "redux": "^4.0.4",
     "redux-form": "^8.2.6",
     "redux-thunk": "^2.3.0"

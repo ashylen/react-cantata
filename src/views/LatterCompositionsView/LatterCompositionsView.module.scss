@@ -10,6 +10,7 @@ hr {
 
 .article {
   padding-top: 10px;
+  margin-bottom: 40px;
 
   @media only screen and (min-width: $mobile-lg) {
     & {
@@ -30,7 +31,6 @@ hr {
       }
     }
 
-
     .inner {
       margin-top: 20px;
       background-color: $description-color;
@@ -41,9 +41,13 @@ hr {
       margin: 15px 0;
       animation: fadeSlideInDown 1s;
 
-      .video {
-        iframe {
+      .image {
+        display: flex;
+        img {
+          align-self: center;
           width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
       }
 
@@ -64,10 +68,10 @@ hr {
 
         .description {
           flex: 0 1 50%;
-          padding: 0 10px 0 36px;
+          padding: 0 25px 0 36px;
 
           &:after {
-            content: "";
+            content: '';
             position: absolute;
             right: -10px;
             top: 50%;
@@ -93,7 +97,7 @@ hr {
           }
         }
 
-        .video,
+        .image,
         .noVideo {
           flex: 0 1 50%;
 
