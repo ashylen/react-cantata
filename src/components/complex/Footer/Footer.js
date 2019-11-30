@@ -1,13 +1,18 @@
 import React from 'react';
 
+// Modules
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
+// Utils
+import { routes } from '../../../routes';
+import styles from './Footer.module.scss';
 
 import gamepad from '../../../assets/images/gamepad.svg';
 import logoPtig from '../../../assets/images/logo-ptig.png';
 import facebook from '../../../assets/images/facebook.svg';
 import yt from '../../../assets/images/yt.svg';
 import google from '../../../assets/images/google.svg';
-import styles from './Footer.module.scss';
 
 const Footer = ({ siteTitle }) => (
   <footer id="footer" className={styles.footer}>
@@ -65,7 +70,9 @@ const Footer = ({ siteTitle }) => (
         </a>
       </p>
     </div>
-    <a href="#">Admin</a>
+    <div className={styles.loginButton}>
+      <Link to={routes.login}>Admin</Link>
+    </div>
   </footer>
 );
 

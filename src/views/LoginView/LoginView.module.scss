@@ -1,0 +1,25 @@
+.wrapper {
+  background-color: #161110;
+  color: #fff;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 10% 0;
+
+  h2 {
+    margin: 0;
+  }
+
+  .form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      color: #fff;
+    }
+  }
+}

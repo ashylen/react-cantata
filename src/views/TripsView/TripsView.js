@@ -2,34 +2,33 @@ import React, { useEffect } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { fetchArticles } from '../../actions/articlesActions';
+import { fetchTrips } from '../../actions/tripsActions';
 
 import Tile from '../../components/complex/Tile/Tile';
 
-import styles from './ArticlesView.module.scss';
+import styles from './TripsView.module.scss';
 
 // Components
 import Header from '../../components/complex/Header/Header';
 import Footer from '../../components/complex/Footer/Footer';
 
-const ArticlesView = () => {
-  const { articles } = useSelector(state => ({ articles: state.articlesReducer.articles }));
+const TripsView = () => {
+  const { trips } = useSelector(state => ({ trips: state.tripsReducer.trips }));
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchArticles());
+    dispatch(fetchTrips());
   }, []);
 
   return (
     <>
       <Header />
       <section>
-        {console.log(articles)}
+        {console.log(trips)}
         <article className={styles.container}>
-          <h1>Artykuły</h1>
-          <div className={styles.articlesWrapper}>
-            {!!articles &&
-              articles.map(article => <Tile routeName="article" key={article.id} data={article} />)}
+          <h1>Wyjazdy</h1>
+          <div className={styles.tripsWrapper}>
+            {!!trips && trips.map(trip => <Tile routeName="trip" key={trip.id} data={trip} />)}
           </div>
         </article>
       </section>
@@ -38,4 +37,4 @@ const ArticlesView = () => {
   );
 };
 
-export default ArticlesView;
+export default TripsView;

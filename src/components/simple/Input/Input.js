@@ -31,7 +31,7 @@ Input.defaultProps = {
   tag: '',
   maxLength: '200',
   error: false,
-  placeholder: " "
+  placeholder: ' ',
 };
 
 Input.propTypes = {
@@ -39,7 +39,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  maxLength:  PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  maxLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({ error: PropTypes.string })]),
 };
 

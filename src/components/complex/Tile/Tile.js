@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 import { routes } from '../../../routes';
 
-import styles from './ArticleBox.module.scss';
+import styles from './Tile.module.scss';
 
-const ArticleBox = ({ data }) => {
+const Tile = ({ data, routeName }) => {
   return (
     <article className={styles.article}>
       {data.main_image && (
@@ -19,17 +19,17 @@ const ArticleBox = ({ data }) => {
         <h2>{data.title}</h2>
         <p>{data.short_description}</p>
       </div>
-      <Link className={styles.absoluteLink} to={routes.article(data.id)} />
+      <Link className={styles.absoluteLink} to={routes[routeName](data.id)} />
     </article>
   );
 };
 
-ArticleBox.propTypes = {
+Tile.propTypes = {
   siteTitle: PropTypes.string,
 };
 
-ArticleBox.defaultProps = {
+Tile.defaultProps = {
   siteTitle: ``,
 };
 
-export default ArticleBox;
+export default Tile;

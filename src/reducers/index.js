@@ -4,14 +4,16 @@ import articlesReducer from './articlesReducer';
 import compositionsReducer from './compositionsReducer';
 import discographyReducer from './discographyReducer';
 import modalReducer from './modalReducer';
-import toursReducer from './toursReducer';
+import tripsReducer from './tripsReducer';
+import usersReducer from './usersReducer';
 
 const rootReducer = combineReducers({
   articlesReducer,
   compositionsReducer,
   discographyReducer,
   modalReducer,
-  toursReducer,
+  tripsReducer,
+  usersReducer,
   form: formReducer,
 });
 
