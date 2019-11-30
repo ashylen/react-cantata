@@ -1,4 +1,3 @@
-@import url("../../../../node_modules/react-datepicker/dist/react-datepicker-cssmodules.css");
 @import '../../../utilities/CSS/variables.module.scss';
 
 @keyframes fadeIn {
@@ -51,7 +50,7 @@
     background: none;
     outline: none;
     margin: 20px 0 5px;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
 
   @media only screen and (min-width: $mobile-lg) {
@@ -75,7 +74,6 @@
   }
 }
 
-
 .formHeader {
   font-size: 1.1rem;
   font-weight: 700;
@@ -90,12 +88,11 @@
   }
 }
 
-
 :global .react-datepicker__input-container {
   display: block;
 }
 :global .react-datepicker__input-container:after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 1px;
   left: 0;

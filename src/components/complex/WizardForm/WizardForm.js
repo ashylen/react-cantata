@@ -12,7 +12,6 @@ import WizardFormSecondStep from './WizardFormSecondStep';
 
 // Utilities
 import styles from './WizardForm.module.scss';
-import { GetStringFromDateObject } from '../../../utilities/Functions/GetStringFromDateObject';
 import {
   addComposition as addCompositionAction,
   editComposition as editCompositionAction,
@@ -35,8 +34,6 @@ class WizardForm extends React.Component {
   };
 
   handleSubmit = async formData => {
-    formData.date = GetStringFromDateObject(formData.date);
-
     const {
       addComposition,
       editComposition,
@@ -104,10 +101,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchCompositions: () => dispatch(fetchCompositionsAction()),
-  addComposition: (itemContent) => dispatch(addCompositionAction(itemContent)),
+  addComposition: itemContent => dispatch(addCompositionAction(itemContent)),
   reset: bindActionCreators(resetReduxForm, dispatch),
-  editComposition: (itemId, itemContent) =>
-    dispatch(editCompositionAction(itemId, itemContent)),
+  editComposition: (itemId, itemContent) => dispatch(editCompositionAction(itemId, itemContent)),
 });
 
 export default connect(

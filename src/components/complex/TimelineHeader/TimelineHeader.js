@@ -5,12 +5,9 @@ import PropTypes from 'prop-types';
 
 // Utilities
 import styles from './TimelineHeader.module.scss';
-import { GetStringFromDateObject } from '../../../utilities/Functions/GetStringFromDateObject';
 
 const TimelineHeader = ({ title, children: subText, secondary }) => {
   const wrapperClass = secondary ? styles.secondaryWrapper : styles.wrapper;
-
-  subText = GetStringFromDateObject(subText);
 
   return (
     <React.Fragment>

@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux';
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
-import CustomDatepicker from '../../simple/CustomInputs/CustomDatepicker';
 
 // Utilities
 import styles from './WizardForm.module.scss';
@@ -20,8 +19,7 @@ import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 const maxLength15 = maxLength(15);
 const isRequired = required;
 
-const WizardFormFirstStep = (props) => {
-
+const WizardFormFirstStep = props => {
   const { handleSubmit, isEditMode, reset, pristine, submitting } = props;
 
   return (
@@ -43,14 +41,6 @@ const WizardFormFirstStep = (props) => {
           type="text"
           validate={[isRequired]}
           label="Link"
-        />
-        <Field
-          name="date"
-          placeholder=" "
-          component={CustomDatepicker}
-          type="text"
-          validate={[isRequired]}
-          label="Date"
         />
         <Field
           name="youTubeUrl"
@@ -141,7 +131,7 @@ export default connect(
 )(
   reduxForm({
     form: 'addNewCompositionForm',
-    enableReinitialize: true, 
+    enableReinitialize: true,
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
   })(WizardFormFirstStep),

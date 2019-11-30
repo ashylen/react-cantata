@@ -7,9 +7,6 @@ import { CSSTransition } from 'react-transition-group';
 import { bindActionCreators } from 'redux';
 
 // Utilities
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-
 import styles from './LatterCompositionsView.module.scss';
 
 import { fetchCompositions as fetchCompositionsAction } from '../../actions/compositionActions';
@@ -85,7 +82,7 @@ class LatterCompositionsView extends Component {
                 openCompositionsModal(false, null);
               }}
             >
-              <FontAwesomeIcon icon={faPlus} color="#abacac" size="1x" />
+              +
             </Button>
           </div>
         </article>
