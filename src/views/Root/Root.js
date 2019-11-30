@@ -12,6 +12,7 @@ import './index.css';
 // Components
 import HomePageView from '../HomePageView/HomePageView';
 import ArticlesView from '../ArticlesView/ArticlesView';
+import ArticleView from '../ArticleView/ArticleView';
 
 const Root = () => {
   return (
@@ -19,9 +20,9 @@ const Root = () => {
       <Provider store={store}>
         <Switch>
           {/* <Route exact path={routes.login} component={LoginPage} /> */}
-          {/* <Route exact path={routes.home} render={() => <Redirect to="/notes" />} /> */}
           <Route exact path={routes.home} component={HomePageView} />
           <Route exact path={routes.articles} component={ArticlesView} />
+          <Route exact path={routes.article(':id')} component={ArticleView} />
         </Switch>
       </Provider>
     </BrowserRouter>

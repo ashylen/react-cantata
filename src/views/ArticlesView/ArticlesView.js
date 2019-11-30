@@ -13,7 +13,6 @@ import Header from '../../components/complex/Header/Header';
 import Footer from '../../components/complex/Footer/Footer';
 
 const ArticlesView = () => {
-  // const articles = useSelector();
   const { articles } = useSelector(state => ({ articles: state.articlesReducer.articles }));
   const dispatch = useDispatch();
 
