@@ -26,20 +26,32 @@ import ContactView from '../ContactView/ContactView';
 import MainTemplate from '../../templates/MainTemplate';
 
 class HomePageView extends Component {
-  componentDidMount() {
+  state = {
+    isFetching: true,
+  };
+
+  async componentDidMount() {
     const { fetchSpecimens } = this.props;
-    fetchSpecimens();
+
+    try {
+      await fetchSpecimens();
+      this.setState({ isFetching: false });
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 
   handleSpecimenDelete = async id => {
     const { deleteSpecimen, fetchSpecimens } = this.props;
+    this.setState({ isFetching: true });
 
     if (window.confirm('Na pewno chcesz usunąć ten element?')) {
       try {
         await deleteSpecimen(id);
         await fetchSpecimens();
+        this.setState({ isFetching: false });
       } catch (error) {
-        console.error(error);
+        throw new Error(error);
       }
     }
   };
@@ -49,7 +61,8 @@ class HomePageView extends Component {
 
     return (
       <MainTemplate isHomePage>
-        <Preloader active={!specimens || !specimens.length > 0 || !user} />
+        {console.log(this.state.isFetching)}
+        <Preloader active={this.state.isFetching} />
 
         <CSSTransition
           in={isModalOpen}
@@ -123,12 +136,8 @@ HomePageView.propTypes = {
   specimens: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      text: PropTypes.string.isRequired,
-      header: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired,
-      date: PropTypes.string.isRequired,
-      youTubeUrl: PropTypes.string.isRequired,
-      subText: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
     }),
   ),
 };
