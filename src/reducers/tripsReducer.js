@@ -17,12 +17,6 @@ const tripsReducer = (state = initialState, action) => {
         ...state,
         trip: action.payload,
       };
-    //   case ADD_COMPOSITIONS_SUCCESS:
-    //     return {
-    //       ...state,
-    //       compositions: [...state.compositions, action.payload.data],
-    //     };
-    //   case EDIT_COMPOSITIONS_SUCCESS:
     default:
       return state;
   }

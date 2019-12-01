@@ -113,7 +113,7 @@ WizardFormFirstStep.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { isEditMode, idCurrentItem, editItemData } = state.modalReducer.compositions;
+  const { isEditMode, idCurrentItem, editItemData } = state.modals.specimens;
   return {
     initialValues: editItemData,
     isEditMode,

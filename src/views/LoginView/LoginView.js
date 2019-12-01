@@ -50,15 +50,6 @@ class LoginView extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   const { isEditMode, idCurrentItem, editItemData } = state.modalReducer.compositions;
-//   return {
-//     initialValues: editItemData,
-//     isEditMode,
-//     idCurrentItem,
-//   };
-// };
-
 const mapDispatchToProps = dispatch => ({
   login: bindActionCreators(usersActions.login, dispatch),
 });

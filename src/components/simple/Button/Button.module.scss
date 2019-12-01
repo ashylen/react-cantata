@@ -10,7 +10,7 @@ $bg-color: #f5f6f6;
   width: 100%;
   padding: 20px 12px;
   border: 1px solid $border-color;
-  z-index:1;
+  z-index: 1;
 
   text-align: center;
   font-size: 0.875rem;
@@ -35,29 +35,7 @@ $bg-color: #f5f6f6;
 
   & .text {
     position: relative;
-    word-break:break-word;
-
-
-    &:after,
-    &:before {
-      right: -20px;
-      content: "";
-      height: 1px;
-      width: 5px;
-      position: absolute;
-      pointer-events: none;
-      background-color: #000;
-      background-color: #000;
-    }
-
-    &:after {
-      top: 44%;
-      transform: rotate(45deg);
-    }
-    &:before {
-      top: 63%;
-      transform: rotate(-45deg);
-    }
+    word-break: break-word;
   }
 
   & .invertText {
@@ -145,16 +123,16 @@ $bg-color: #f5f6f6;
   }
 }
 
-.absoluteTopRight{
+.absoluteTopRight {
   @extend .button;
-  position:absolute;
-  top:10px;
+  position: absolute;
+  top: 10px;
   right: 10px;
   padding: 3px;
   max-width: 100px;
 
   & span:before,
-  span:after{
-    display:none;
+  span:after {
+    display: none;
   }
 }

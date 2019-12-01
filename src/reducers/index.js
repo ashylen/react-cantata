@@ -1,20 +1,21 @@
 import { combineReducers } from 'redux';
+import { connectRouter } from 'connected-react-router';
 import { reducer as formReducer } from 'redux-form';
-import articlesReducer from './articlesReducer';
-import compositionsReducer from './compositionsReducer';
-import discographyReducer from './discographyReducer';
-import modalReducer from './modalReducer';
-import tripsReducer from './tripsReducer';
-import usersReducer from './usersReducer';
+import articles from './articlesReducer';
+import specimens from './specimensReducer';
+import modals from './modalReducer';
+import trips from './tripsReducer';
+import users from './usersReducer';
 
-const rootReducer = combineReducers({
-  articlesReducer,
-  compositionsReducer,
-  discographyReducer,
-  modalReducer,
-  tripsReducer,
-  usersReducer,
-  form: formReducer,
-});
+const rootReducer = history =>
+  combineReducers({
+    articles,
+    specimens,
+    modals,
+    trips,
+    users,
+    form: formReducer,
+    router: connectRouter(history),
+  });
 
 export default rootReducer;

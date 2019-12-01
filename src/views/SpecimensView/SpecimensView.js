@@ -7,12 +7,12 @@ import { CSSTransition } from 'react-transition-group';
 import { bindActionCreators } from 'redux';
 
 // Utilities
-import styles from './LatterCompositionsView.module.scss';
+import styles from './SpecimensView.module.scss';
 
-import { fetchCompositions as fetchCompositionsAction } from '../../actions/compositionActions';
+import { fetchSpecimens as fetchSpecimensAction } from '../../actions/specimensActions';
 import {
-  openCompositionsModal as openCompositionsModalAction,
-  closeCompositionsModal as closeCompositionsModalAction,
+  openSpecimensModal as openSpecimensModalAction,
+  closeSpecimensModal as closeSpecimensModalAction,
 } from '../../actions/modalActions';
 import fadeTransition from '../../utilities/CSS/Transitions/fade.module.scss';
 
@@ -24,14 +24,14 @@ import TimelineHeader from '../../components/complex/TimelineHeader/TimelineHead
 import Button from '../../components/simple/Button/Button';
 import Modal from '../../components/complex/Modal/Modal';
 
-class LatterCompositionsView extends Component {
+class SpecimensView extends Component {
   componentDidMount() {
-    const { fetchCompositions } = this.props;
-    fetchCompositions();
+    const { fetchSpecimens } = this.props;
+    fetchSpecimens();
   }
 
   render() {
-    const { compositions, isModalOpen, openCompositionsModal, closeCompositionsModal } = this.props;
+    const { specimens, isModalOpen, openSpecimensModal, closeSpecimensModal } = this.props;
 
     return (
       <React.Fragment>
@@ -41,17 +41,17 @@ class LatterCompositionsView extends Component {
           classNames={{ ...fadeTransition }}
           unmountOnExit
         >
-          <Modal closeModalFn={closeCompositionsModal} />
+          <Modal closeModalFn={closeSpecimensModal} />
         </CSSTransition>
-        <article id="latter-compositions" className={styles.article}>
+        <article id="specimens" className={styles.article}>
           <div className={styles.wrapper}>
             <SectionTitle textCustomize="gradient">Okazy</SectionTitle>
             <SectionDescription>
               Poniżej przedstawione zostały poszczególne okazy, które udało się nam znaleźć.
             </SectionDescription>
 
-            {compositions
-              ? compositions.map(item => (
+            {specimens
+              ? specimens.map(item => (
                   <div className={styles.inner} key={item.id}>
                     <div className={styles.description}>
                       <TimelineHeader secondary title={item.family}>
@@ -62,7 +62,7 @@ class LatterCompositionsView extends Component {
                       <Button
                         cssClass="absoluteTR"
                         onClick={() => {
-                          openCompositionsModal(true, item.id);
+                          openSpecimensModal(true, item.id);
                         }}
                       >
                         Edit
@@ -79,7 +79,7 @@ class LatterCompositionsView extends Component {
             <Button
               cssClass="buttonFixed"
               onClick={() => {
-                openCompositionsModal(false, null);
+                openSpecimensModal(false, null);
               }}
             >
               +
@@ -91,16 +91,16 @@ class LatterCompositionsView extends Component {
   }
 }
 
-LatterCompositionsView.defaultProps = {
-  compositions: [],
+SpecimensView.defaultProps = {
+  specimens: [],
 };
 
-LatterCompositionsView.propTypes = {
-  fetchCompositions: PropTypes.func.isRequired,
-  openCompositionsModal: PropTypes.func.isRequired,
-  closeCompositionsModal: PropTypes.func.isRequired,
+SpecimensView.propTypes = {
+  fetchSpecimens: PropTypes.func.isRequired,
+  openSpecimensModal: PropTypes.func.isRequired,
+  closeSpecimensModal: PropTypes.func.isRequired,
   isModalOpen: PropTypes.bool.isRequired,
-  compositions: PropTypes.arrayOf(
+  specimens: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       text: PropTypes.string.isRequired,
@@ -114,17 +114,17 @@ LatterCompositionsView.propTypes = {
 };
 
 const mapStateToProps = state => {
-  const { compositions } = state.compositionsReducer;
-  const { isModalOpen } = state.modalReducer.compositions;
+  const { specimens } = state.specimens;
+  const { isModalOpen } = state.modals.specimens;
 
-  return { compositions, isModalOpen };
+  return { specimens, isModalOpen };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCompositions: () => dispatch(fetchCompositionsAction()),
-  openCompositionsModal: (isEditMode, idCurrentItem) =>
-    dispatch(openCompositionsModalAction(isEditMode, idCurrentItem)),
-  closeCompositionsModal: bindActionCreators(closeCompositionsModalAction, dispatch),
+  fetchSpecimens: () => dispatch(fetchSpecimensAction()),
+  openSpecimensModal: (isEditMode, idCurrentItem) =>
+    dispatch(openSpecimensModalAction(isEditMode, idCurrentItem)),
+  closeSpecimensModal: bindActionCreators(closeSpecimensModalAction, dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LatterCompositionsView);
+export default connect(mapStateToProps, mapDispatchToProps)(SpecimensView);

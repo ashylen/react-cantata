@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-export const OPEN_COMPOSITIONS_MODAL = 'OPEN_COMPOSITIONS_MODAL';
-export const OPEN_COMPOSITIONS_MODAL_FAILURE = 'OPEN_COMPOSITIONS_MODAL_FAILURE';
-export const CLOSE_COMPOSITIONS_MODAL = 'CLOSE_COMPOSITIONS_MODAL';
+export const OPEN_SPECIMENS_MODAL = 'OPEN_SPECIMENS_MODAL';
+export const OPEN_SPECIMENS_MODAL_FAILURE = 'OPEN_SPECIMENS_MODAL_FAILURE';
+export const CLOSE_SPECIMENS_MODAL = 'CLOSE_SPECIMENS_MODAL';
 
-export const FETCH_COMPOSITIONS_ITEM_REQUEST = 'FETCH_COMPOSITIONS_ITEM_REQUEST';
-export const FETCH_COMPOSITIONS_ITEM_SUCCESS = 'FETCH_COMPOSITIONS_ITEM_SUCCESS';
-export const FETCH_COMPOSITIONS_ITEM_FAILURE = 'FETCH_COMPOSITIONS_ITEM_FAILURE';
+export const FETCH_SPECIMENS_ITEM_REQUEST = 'FETCH_SPECIMENS_ITEM_REQUEST';
+export const FETCH_SPECIMENS_ITEM_SUCCESS = 'FETCH_SPECIMENS_ITEM_SUCCESS';
+export const FETCH_SPECIMENS_ITEM_FAILURE = 'FETCH_SPECIMENS_ITEM_FAILURE';
 
-export const openCompositionsModal = (isEditMode, idCurrentItem) => dispatch => {
+export const openSpecimensModal = (isEditMode, idCurrentItem) => dispatch => {
   if (idCurrentItem === null || !idCurrentItem) {
     dispatch({
-      type: OPEN_COMPOSITIONS_MODAL,
-      compositions: {
+      type: OPEN_SPECIMENS_MODAL,
+      specimens: {
         isModalOpen: true,
         isEditMode: false,
         idCurrentItem: null,
@@ -21,11 +21,11 @@ export const openCompositionsModal = (isEditMode, idCurrentItem) => dispatch => 
     });
   } else {
     return axios
-      .get(`${process.env.REACT_APP_API_URL}/compositions/${idCurrentItem}`)
+      .get(`${process.env.REACT_APP_API_URL}/specimen/${idCurrentItem}`)
       .then(({ data }) => {
         dispatch({
-          type: OPEN_COMPOSITIONS_MODAL,
-          compositions: {
+          type: OPEN_SPECIMENS_MODAL,
+          specimens: {
             isModalOpen: true,
             isEditMode,
             idCurrentItem,
@@ -35,13 +35,13 @@ export const openCompositionsModal = (isEditMode, idCurrentItem) => dispatch => 
       })
       .catch(err => {
         console.error(err); // Dodać obsługe
-        // OPEN_COMPOSITIONS_MODAL_FAILURE
+        // OPEN_SPECIMENS_MODAL_FAILURE
       });
   }
 };
 
-export const closeCompositionsModal = () => dispatch => {
+export const closeSpecimensModal = () => dispatch => {
   dispatch({
-    type: CLOSE_COMPOSITIONS_MODAL,
+    type: CLOSE_SPECIMENS_MODAL,
   });
 };

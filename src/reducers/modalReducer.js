@@ -1,7 +1,7 @@
-import { OPEN_COMPOSITIONS_MODAL, CLOSE_COMPOSITIONS_MODAL } from '../actions/modalActions';
+import { OPEN_SPECIMENS_MODAL, CLOSE_SPECIMENS_MODAL } from '../actions/modalActions';
 
 const initialState = {
-  compositions: {
+  specimens: {
     isModalOpen: false,
     isEditMode: false,
     idCurrentItem: null,
@@ -11,20 +11,20 @@ const initialState = {
 
 const modalReducer = (state = initialState, action) => {
   switch (action.type) {
-    case OPEN_COMPOSITIONS_MODAL:
+    case OPEN_SPECIMENS_MODAL:
       return {
         ...state,
-        compositions: {
-          isModalOpen: action.compositions.isModalOpen,
-          isEditMode: action.compositions.isEditMode,
-          idCurrentItem: action.compositions.idCurrentItem,
-          editItemData: action.compositions.editItemData,
+        specimens: {
+          isModalOpen: action.specimens.isModalOpen,
+          isEditMode: action.specimens.isEditMode,
+          idCurrentItem: action.specimens.idCurrentItem,
+          editItemData: action.specimens.editItemData,
         },
       };
-    case CLOSE_COMPOSITIONS_MODAL:
+    case CLOSE_SPECIMENS_MODAL:
       return {
         ...state,
-        compositions: {
+        specimens: {
           isModalOpen: false,
           isEditMode: false,
           idCurrentItem: null,

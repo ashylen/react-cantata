@@ -1,1 +1,1 @@
-export const required = value => (value ? undefined : 'This field is required');
+export const required = value => (value ? undefined : 'To pole jest wymagane');

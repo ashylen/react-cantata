@@ -13,7 +13,7 @@ import Header from '../../components/complex/Header/Header';
 import Footer from '../../components/complex/Footer/Footer';
 
 const TripsView = () => {
-  const { trips } = useSelector(state => ({ trips: state.tripsReducer.trips }));
+  const { trips } = useSelector(state => ({ trips: state.trips.trips }));
   const dispatch = useDispatch();
 
   useEffect(() => {

@@ -12,7 +12,7 @@ import Header from '../../components/complex/Header/Header';
 import Footer from '../../components/complex/Footer/Footer';
 
 const ArticleView = props => {
-  const { article } = useSelector(state => ({ article: state.articlesReducer.article }));
+  const { article } = useSelector(state => ({ article: state.articles.article }));
   const dispatch = useDispatch();
   const params = useParams();
 

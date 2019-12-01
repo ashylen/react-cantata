@@ -36,8 +36,8 @@ class ToursView extends Component {
             <SectionDescription>
               Before the release of Night Visions, Imagine Dragons made appearances on American
               radio and television to promote their extended play, Continued Silence and debut
-              single It&#39;s Time. The band performed &quot;It&#39;s Time&quot; on the July 16, 2012 airing of NBC
-              late-night talk show The Tonight Show with Jay Leno
+              single It&#39;s Time. The band performed &quot;It&#39;s Time&quot; on the July 16,
+              2012 airing of NBC late-night talk show The Tonight Show with Jay Leno
             </SectionDescription>
 
             {tours
@@ -73,14 +73,14 @@ ToursView.propTypes = {
       header: PropTypes.string.isRequired,
       subText: PropTypes.string.isRequired,
       date: PropTypes.string.isRequired,
-      href: PropTypes.string.isRequired
+      href: PropTypes.string.isRequired,
     }),
   ),
 };
 
 const mapStateToProps = state => {
   const { tours } = state.toursReducer;
-  const { isModalOpen } = state.modalReducer.compositions;
+  const { isModalOpen } = state.modals.specimens;
 
   return { tours, isModalOpen };
 };
@@ -89,7 +89,4 @@ const mapDispatchToProps = dispatch => ({
   fetchTours: () => dispatch(fetchToursAction('tours')),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ToursView);
+export default connect(mapStateToProps, mapDispatchToProps)(ToursView);

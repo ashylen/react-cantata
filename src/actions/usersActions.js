@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { history } from '../store';
+
 export const FETCH_USER = 'FETCH_USER';
 
 export const login = (identifier, password) => async dispatch => {
@@ -13,9 +15,10 @@ export const login = (identifier, password) => async dispatch => {
       type: FETCH_USER,
       payload: response.data,
     });
-
-    return response.data;
+    localStorage.setItem('user', response.data.jwt);
+    history.push('/');
   } catch (error) {
+    // TO DO Tutaj zrobić jakiś error handling
     console.error(error);
   }
 };

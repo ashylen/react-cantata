@@ -13,10 +13,10 @@ import WizardFormSecondStep from './WizardFormSecondStep';
 // Utilities
 import styles from './WizardForm.module.scss';
 import {
-  addComposition as addCompositionAction,
-  editComposition as editCompositionAction,
-  fetchCompositions as fetchCompositionsAction,
-} from '../../../actions/compositionActions';
+  addSpecimen as addSpecimenAction,
+  editSpecimen as editSpecimenAction,
+  fetchSpecimens as fetchSpecimensAction,
+} from '../../../actions/specimensActions';
 
 class WizardForm extends React.Component {
   state = { step: 1 };
@@ -35,27 +35,27 @@ class WizardForm extends React.Component {
 
   handleSubmit = async formData => {
     const {
-      addComposition,
-      editComposition,
+      addSpecimen,
+      editSpecimen,
       closeModalFn,
       idCurrentItem,
       isEditMode,
       // reset,
-      fetchCompositions,
+      fetchSpecimens,
     } = this.props;
 
     try {
       if (isEditMode) {
-        await editComposition(idCurrentItem, formData);
+        await editSpecimen(idCurrentItem, formData);
       } else {
-        await addComposition(formData);
+        await addSpecimen(formData);
       }
     } catch (e) {
       console.error(e);
     }
 
     try {
-      await fetchCompositions();
+      await fetchSpecimens();
     } catch (e) {
       console.error(e);
     }
@@ -85,25 +85,25 @@ WizardForm.defaultProps = {
 };
 
 WizardForm.propTypes = {
-  addComposition: PropTypes.func.isRequired,
-  editComposition: PropTypes.func.isRequired,
+  addSpecimen: PropTypes.func.isRequired,
+  editSpecimen: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
   isEditMode: PropTypes.bool.isRequired,
   idCurrentItem: PropTypes.number,
-  fetchCompositions: PropTypes.func.isRequired,
+  fetchSpecimens: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
-  const { isEditMode, idCurrentItem } = state.modalReducer.compositions;
-  const { editItemData } = state.compositionsReducer;
+  const { isEditMode, idCurrentItem } = state.modals.specimens;
+  const { editItemData } = state.specimens;
   return { isEditMode, idCurrentItem, editItemData };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchCompositions: () => dispatch(fetchCompositionsAction()),
-  addComposition: itemContent => dispatch(addCompositionAction(itemContent)),
+  fetchSpecimens: () => dispatch(fetchSpecimensAction()),
+  addSpecimen: itemContent => dispatch(addSpecimenAction(itemContent)),
   reset: bindActionCreators(resetReduxForm, dispatch),
-  editComposition: (itemId, itemContent) => dispatch(editCompositionAction(itemId, itemContent)),
+  editSpecimen: (itemId, itemContent) => dispatch(editSpecimenAction(itemId, itemContent)),
 });
 
 export default connect(
