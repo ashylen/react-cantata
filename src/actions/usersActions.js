@@ -2,6 +2,8 @@ import axios from 'axios';
 
 import { history } from '../store';
 
+import { axiosAuthInstance } from '../helpers/auth/interceptors';
+
 export const FETCH_USER = 'FETCH_USER';
 
 export const login = (identifier, password) => async dispatch => {
@@ -15,10 +17,43 @@ export const login = (identifier, password) => async dispatch => {
       type: FETCH_USER,
       payload: response.data,
     });
-    localStorage.setItem('user', response.data.jwt);
+    localStorage.setItem('token', response.data.jwt);
     history.push('/');
   } catch (error) {
     // TO DO Tutaj zrobić jakiś error handling
     console.error(error);
   }
+};
+
+export const fetchUserByToken = () => async dispatch => {
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    return;
+  }
+
+  try {
+    const response = await axiosAuthInstance({
+      method: 'GET',
+      url: `/users/me`,
+    });
+
+    dispatch({ type: FETCH_USER, payload: response.data });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getAccessToken = () => dispatch => {
+  return new Promise((resolve, reject) => {
+    let token = localStorage.getItem('token');
+    if (token) {
+      // let tokenExpiresDate = jwt_decode(token).exp;
+      // let currentDate = Math.round(new Date().getTime() / 1000);
+
+      resolve(token);
+    } else {
+      reject('403');
+    }
+  });
 };

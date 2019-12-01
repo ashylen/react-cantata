@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 // Modules
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import { bindActionCreators } from 'redux';
@@ -9,11 +10,8 @@ import { bindActionCreators } from 'redux';
 // Utilities
 import styles from './HomePageView.module.scss';
 
-import { fetchSpecimens as fetchSpecimensAction } from '../../actions/specimensActions';
-import {
-  openSpecimensModal as openSpecimensModalAction,
-  closeSpecimensModal as closeSpecimensModalAction,
-} from '../../actions/modalActions';
+import * as specimensActions from '../../actions/specimensActions';
+import * as modalsActions from '../../actions/modalActions';
 import fadeTransition from '../../utilities/CSS/Transitions/fade.module.scss';
 
 // Components
@@ -32,8 +30,21 @@ class HomePageView extends Component {
     fetchSpecimens();
   }
 
+  handleSpecimenDelete = async id => {
+    const { deleteSpecimen, fetchSpecimens } = this.props;
+
+    if (window.confirm('Na pewno chcesz usunąć ten element?')) {
+      try {
+        await deleteSpecimen(id);
+        await fetchSpecimens();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   render() {
-    const { specimens, isModalOpen, openSpecimensModal, closeSpecimensModal } = this.props;
+    const { specimens, user, isModalOpen, openSpecimensModal, closeSpecimensModal } = this.props;
 
     return (
       <MainTemplate isHomePage>
@@ -52,10 +63,10 @@ class HomePageView extends Component {
               Poniżej przedstawione zostały poszczególne okazy, które udało się nam znaleźć.
             </SectionDescription>
 
-            {specimens
+            {!!specimens
               ? specimens.map(item => (
                   <div className={styles.inner} key={item.id}>
-                    <div className={styles.description}>
+                    <div className={classNames(styles.description, { [styles.full]: !item.image })}>
                       <TimelineHeader secondary title={item.family}>
                         {item.subText}
                       </TimelineHeader>
@@ -63,29 +74,30 @@ class HomePageView extends Component {
 
                       <Button
                         cssClass="absoluteTR"
-                        onClick={() => {
-                          openSpecimensModal(true, item.id);
-                        }}
+                        onClick={() => this.handleSpecimenDelete(item.id)}
                       >
-                        Edit
+                        Delete
                       </Button>
                     </div>
-
-                    <div className={styles.image}>
-                      <img src={`${process.env.REACT_APP_API_URL}${item.image.url}`} />
-                    </div>
+                    {item.image && (
+                      <div className={styles.image}>
+                        <img src={`${process.env.REACT_APP_API_URL}${item.image.url}`} />
+                      </div>
+                    )}
                   </div>
                 ))
               : null}
 
-            <Button
-              cssClass="buttonFixed"
-              onClick={() => {
-                openSpecimensModal(false, null);
-              }}
-            >
-              +
-            </Button>
+            {!!user && user.username === 'admin' && (
+              <Button
+                cssClass="buttonFixed"
+                onClick={() => {
+                  openSpecimensModal(false, null);
+                }}
+              >
+                +
+              </Button>
+            )}
           </div>
         </article>
         <ContactView />
@@ -118,16 +130,17 @@ HomePageView.propTypes = {
 
 const mapStateToProps = state => {
   const { specimens } = state.specimens;
+  const { user } = state.users;
   const { isModalOpen } = state.modals.specimens;
 
-  return { specimens, isModalOpen };
+  return { specimens, isModalOpen, user };
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchSpecimens: () => dispatch(fetchSpecimensAction()),
-  openSpecimensModal: (isEditMode, idCurrentItem) =>
-    dispatch(openSpecimensModalAction(isEditMode, idCurrentItem)),
-  closeSpecimensModal: bindActionCreators(closeSpecimensModalAction, dispatch),
+  deleteSpecimen: bindActionCreators(specimensActions.deleteSpecimen, dispatch),
+  fetchSpecimens: bindActionCreators(specimensActions.fetchSpecimens, dispatch),
+  closeSpecimensModal: bindActionCreators(modalsActions.closeSpecimensModal, dispatch),
+  openSpecimensModal: bindActionCreators(modalsActions.openSpecimensModal, dispatch),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageView);

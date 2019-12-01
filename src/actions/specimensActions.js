@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { axiosAuthInstance } from '../helpers/auth/interceptors';
 
 export const ADD_SPECIMENS_REQUEST = 'ADD_SPECIMENS_REQUEST';
 export const ADD_SPECIMENS_SUCCESS = 'ADD_SPECIMENS_SUCCESS';
@@ -17,7 +18,6 @@ export const fetchSpecimens = () => async dispatch => {
 
   try {
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/specimen`);
-    console.log(response);
     dispatch({
       type: FETCH_SPECIMENS_SUCCESS,
       payload: response.data,
@@ -32,19 +32,25 @@ export const addSpecimen = itemContent => async dispatch => {
   dispatch({ type: ADD_SPECIMENS_REQUEST });
 
   try {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/specimen`, {
-      title: 'postttt nowddy',
-      description: 'xd',
-    });
-    dispatch({
-      type: ADD_SPECIMENS_SUCCESS,
-      payload: {
-        response,
-      },
+    const response = await axiosAuthInstance({
+      method: 'POST',
+      url: `/specimen`,
+      data: itemContent,
     });
   } catch (error) {
     console.error(error);
     dispatch({ type: ADD_SPECIMENS_FAILURE });
+  }
+};
+
+export const deleteSpecimen = id => async dispatch => {
+  try {
+    const response = await axiosAuthInstance({
+      method: 'DELETE',
+      url: `/specimen/${id}`,
+    });
+  } catch (error) {
+    console.error(error);
   }
 };
 

@@ -16,7 +16,6 @@ import { required } from '../../../utilities/Validators/required';
 import { maxLength } from '../../../utilities/Validators/maxLength';
 import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
-const maxLength15 = maxLength(15);
 const isRequired = required;
 
 const WizardFormFirstStep = props => {
@@ -24,53 +23,29 @@ const WizardFormFirstStep = props => {
 
   return (
     <React.Fragment>
-      <div className={styles.formHeader}>{isEditMode ? 'Edit' : 'Add a new'} composition</div>
+      <div className={styles.formHeader}>Dodaj</div>
       <form onSubmit={handleSubmit} className={styles.form}>
         <Field
-          name="header"
-          placeholder=" "
-          component={CustomInput}
-          type="text"
-          validate={[isRequired, maxLength15]}
-          label="Composition name"
-        />
-        <Field
-          name="href"
+          name="title"
           placeholder=" "
           component={CustomInput}
           type="text"
           validate={[isRequired]}
-          label="Link"
+          label="Tytuł"
         />
         <Field
-          name="youTubeUrl"
-          placeholder=" "
-          component={CustomInput}
-          type="text"
-          validate={[isRequired, isYouTubeUrl]}
-          label="Youtube URL"
-        />
-        <Field
-          name="subText"
-          placeholder=" "
-          component={CustomInput}
-          type="text"
-          validate={[isRequired]}
-          label="Additional text"
-        />
-        <Field
-          name="text"
+          name="description"
           placeholder=" "
           component={CustomInput}
           tag="textarea"
           type="text"
           validate={[isRequired]}
-          label="Text"
+          label="Treść"
         />
         <div className={styles.modalNavigation}>
           {pristine ? null : (
             <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
-              Reset to Default
+              Wyczyść
             </Button>
           )}
           <Button type="submit" disabled={submitting}>

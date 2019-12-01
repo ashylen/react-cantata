@@ -1,5 +1,4 @@
 import {
-  ADD_SPECIMENS_SUCCESS,
   EDIT_SPECIMENS_SUCCESS,
   FETCH_SPECIMENS_REQUEST,
   FETCH_SPECIMENS_SUCCESS,
@@ -20,11 +19,6 @@ const specimensReducer = (state = initialState, action) => {
       return {
         ...state,
         specimens: [...action.payload],
-      };
-    case ADD_SPECIMENS_SUCCESS:
-      return {
-        ...state,
-        specimens: [...state.specimens, action.payload.data],
       };
     case EDIT_SPECIMENS_SUCCESS:
     default:

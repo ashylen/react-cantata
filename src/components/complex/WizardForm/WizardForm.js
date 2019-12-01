@@ -70,10 +70,12 @@ class WizardForm extends React.Component {
     return (
       <React.Fragment>
         <div className={styles.wrapper}>
-          {step === 1 && <WizardFormFirstStep isEditMode={isEditMode} onSubmit={this.nextStep} />}
-          {step === 2 && (
-            <WizardFormSecondStep previousStep={this.previousStep} onSubmit={this.handleSubmit} />
+          {step === 1 && (
+            <WizardFormFirstStep isEditMode={isEditMode} onSubmit={this.handleSubmit} />
           )}
+          {/* {step === 2 && (
+            <WizardFormSecondStep previousStep={this.previousStep} onSubmit={this.handleSubmit} />
+          )} */}
         </div>
       </React.Fragment>
     );
