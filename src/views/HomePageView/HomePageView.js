@@ -63,7 +63,6 @@ class HomePageView extends Component {
 
     return (
       <MainTemplate isHomePage>
-        {console.log(this.state.isFetching)}
         <Preloader active={this.state.isFetching} />
 
         <CSSTransition
