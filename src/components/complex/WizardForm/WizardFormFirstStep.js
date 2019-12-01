@@ -58,7 +58,7 @@ const WizardFormFirstStep = props => {
           label="Treść"
         />
 
-        <Field name="image" placeholder=" " component={InputFile} type="file" label="Plik" />
+        <Field name="image" placeholder=" " component={InputFile} type="file" label="Obraz" />
         <br />
         <div className={styles.modalNavigation}>
           {pristine ? null : (

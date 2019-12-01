@@ -4,6 +4,10 @@
   margin: 40px auto;
 
   .articlesWrapper {
+    p {
+      white-space: pre-line;
+    }
+
     .galleryWrapper {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -13,7 +17,7 @@
 
     .image {
       a {
-        display: flex;
+        display: inline-flex;
         height: 100%;
       }
       img {

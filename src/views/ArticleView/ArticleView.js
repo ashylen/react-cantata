@@ -11,6 +11,7 @@ import styles from './ArticleView.module.scss';
 import Header from '../../components/complex/Header/Header';
 import Footer from '../../components/complex/Footer/Footer';
 import Preloader from '../../components/simple/Preloader/Preloader';
+import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
 
 const ArticleView = props => {
   const { article } = useSelector(state => ({ article: state.articles.article }));
@@ -27,9 +28,8 @@ const ArticleView = props => {
       <Header />
       <section>
         <article className={styles.container}>
-          <h1>Artykuły</h1>
           <div className={styles.articlesWrapper}>
-            <h2>{article && article.title}</h2>
+            <SectionTitle textCustomize="gradient">{article && article.title}</SectionTitle>
             <picture className={styles.image}>
               {article && (
                 <a
@@ -41,7 +41,7 @@ const ArticleView = props => {
                 </a>
               )}
             </picture>
-            <p>{article && article.content}</p>
+            <p className={styles.text}>{article && article.content}</p>
 
             <div className={styles.galleryWrapper}>
               {article &&
