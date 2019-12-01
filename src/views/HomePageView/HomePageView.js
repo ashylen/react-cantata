@@ -72,12 +72,14 @@ class HomePageView extends Component {
                       </TimelineHeader>
                       <Box title={item.title} description={item.description} />
 
-                      <Button
-                        cssClass="absoluteTR"
-                        onClick={() => this.handleSpecimenDelete(item.id)}
-                      >
-                        Delete
-                      </Button>
+                      {!!user && user.username === 'admin' && (
+                        <Button
+                          cssClass="absoluteTR"
+                          onClick={() => this.handleSpecimenDelete(item.id)}
+                        >
+                          Delete
+                        </Button>
+                      )}
                     </div>
                     {item.image && (
                       <div className={styles.image}>
