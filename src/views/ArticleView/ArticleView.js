@@ -10,6 +10,7 @@ import styles from './ArticleView.module.scss';
 // Components
 import Header from '../../components/complex/Header/Header';
 import Footer from '../../components/complex/Footer/Footer';
+import Preloader from '../../components/simple/Preloader/Preloader';
 
 const ArticleView = props => {
   const { article } = useSelector(state => ({ article: state.articles.article }));
@@ -22,6 +23,7 @@ const ArticleView = props => {
 
   return (
     <>
+      <Preloader active={!article} />
       <Header />
       <section>
         <article className={styles.container}>

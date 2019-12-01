@@ -1,0 +1,148 @@
+.preloaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  z-index: 500;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  &:not(.active) {
+    opacity: 0;
+    visibility: visible;
+    pointer-events: none;
+  }
+}
+
+.preloaderWrapper {
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+
+  .preloader {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    &:before {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 15%;
+      height: 15%;
+      background-color: #edb575;
+      border-radius: 100%;
+      animation: preloaderBounceDelay 1.2s infinite ease-in-out both;
+    }
+
+    &.preloader2 {
+      transform: rotate(30deg);
+
+      &:before {
+        animation-delay: -1.1s;
+      }
+    }
+
+    &.preloader3 {
+      transform: rotate(60deg);
+
+      &:before {
+        animation-delay: -1s;
+      }
+    }
+
+    &.preloader4 {
+      transform: rotate(90deg);
+
+      &:before {
+        animation-delay: -0.9s;
+      }
+    }
+
+    &.preloader5 {
+      transform: rotate(120deg);
+
+      &:before {
+        animation-delay: -0.8s;
+      }
+    }
+
+    &.preloader6 {
+      transform: rotate(150deg);
+
+      &:before {
+        animation-delay: -0.7s;
+      }
+    }
+
+    &.preloader7 {
+      transform: rotate(180deg);
+
+      &:before {
+        animation-delay: -0.6s;
+      }
+    }
+
+    &.preloader8 {
+      transform: rotate(210deg);
+
+      &:before {
+        animation-delay: -0.5s;
+      }
+    }
+
+    &.preloader9 {
+      transform: rotate(240deg);
+
+      &:before {
+        animation-delay: -0.4s;
+      }
+    }
+
+    &.preloader10 {
+      transform: rotate(270deg);
+
+      &:before {
+        animation-delay: -0.3s;
+      }
+    }
+
+    &.preloader11 {
+      transform: rotate(300deg);
+
+      &:before {
+        animation-delay: -0.2s;
+      }
+    }
+
+    &.preloader12 {
+      transform: rotate(330deg);
+
+      &:before {
+        animation-delay: -0.1s;
+      }
+    }
+  }
+
+  @keyframes preloaderBounceDelay {
+    0%,
+    80%,
+    100% {
+      transform: scale(0);
+    }
+    40% {
+      transform: scale(1);
+    }
+  }
+}

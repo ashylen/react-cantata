@@ -11,10 +11,12 @@ const articlesReducer = (state = initialState, action) => {
       return {
         ...state,
         articles: [...action.payload],
+        article: null,
       };
     case FETCH_ARTICLE:
       return {
         ...state,
+        articles: [],
         article: action.payload,
       };
     default:

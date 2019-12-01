@@ -19,6 +19,7 @@ import Box from '../../components/complex/Box/Box';
 import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
 import SectionDescription from '../../components/complex/SectionDescription/SectionDescription';
 import TimelineHeader from '../../components/complex/TimelineHeader/TimelineHeader';
+import Preloader from '../../components/simple/Preloader/Preloader';
 import Button from '../../components/simple/Button/Button';
 import Modal from '../../components/complex/Modal/Modal';
 import ContactView from '../ContactView/ContactView';
@@ -48,6 +49,8 @@ class HomePageView extends Component {
 
     return (
       <MainTemplate isHomePage>
+        <Preloader active={!specimens || !specimens.length > 0 || !user} />
+
         <CSSTransition
           in={isModalOpen}
           timeout={350}
@@ -77,7 +80,7 @@ class HomePageView extends Component {
                           cssClass="absoluteTR"
                           onClick={() => this.handleSpecimenDelete(item.id)}
                         >
-                          Delete
+                          Usuń
                         </Button>
                       )}
                     </div>
