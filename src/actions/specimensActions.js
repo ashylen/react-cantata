@@ -31,11 +31,25 @@ export const fetchSpecimens = () => async dispatch => {
 export const addSpecimen = itemContent => async dispatch => {
   dispatch({ type: ADD_SPECIMENS_REQUEST });
 
+  let formData = new FormData();
+  formData.append('files', itemContent.image);
+  let file;
   try {
+    if (!!itemContent.image) {
+      file = await axiosAuthInstance({
+        method: 'POST',
+        url: `/upload`,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        data: formData,
+      });
+    }
+
     const response = await axiosAuthInstance({
       method: 'POST',
       url: `/specimen`,
-      data: itemContent,
+      data: { ...itemContent, image: file && file.data },
     });
   } catch (error) {
     console.error(error);

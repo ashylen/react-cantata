@@ -56,12 +56,12 @@ WizardFormSecondStep.propTypes = {
 };
 
 WizardFormSecondStep = reduxForm({
-  form: 'addNewCompositionForm',
+  form: 'addNewSpecimenForm',
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
 })(WizardFormSecondStep);
 
-const selector = formValueSelector('addNewCompositionForm'); // Get values from Step1 form to Step2
+const selector = formValueSelector('addNewSpecimenForm'); // Get values from Step1 form to Step2
 
 WizardFormSecondStep = connect(state => ({
   header: selector(state, 'header'),

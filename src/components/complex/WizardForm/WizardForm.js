@@ -40,27 +40,17 @@ class WizardForm extends React.Component {
       closeModalFn,
       idCurrentItem,
       isEditMode,
-      // reset,
       fetchSpecimens,
     } = this.props;
 
     try {
-      if (isEditMode) {
-        await editSpecimen(idCurrentItem, formData);
-      } else {
-        await addSpecimen(formData);
-      }
-    } catch (e) {
-      console.error(e);
-    }
-
-    try {
+      await addSpecimen(formData);
       await fetchSpecimens();
     } catch (e) {
       console.error(e);
     }
 
-    await closeModalFn();
+    closeModalFn();
   };
 
   render() {
@@ -113,6 +103,6 @@ export default connect(
   mapDispatchToProps,
 )(
   reduxForm({
-    form: 'addNewCompositionForm', // Have to be set here in order to work properly
+    form: 'addNewSpecimenForm',
   })(WizardForm),
 );

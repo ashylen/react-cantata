@@ -26,7 +26,6 @@ const Root = () => {
       <ConnectedRouter history={history}>
         <ScrollTop>
           <Switch>
-            {/* <Route exact path={routes.login} component={LoginPage} /> */}
             <Route exact path={routes.home} component={HomePageView} />
             <Route exact path={routes.articles} component={ArticlesView} />
             <Route exact path={routes.article(':id')} component={ArticleView} />

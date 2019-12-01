@@ -5,10 +5,12 @@ import { Field, reduxForm, reset as resetReduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
+import classNames from 'classnames';
 
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
+import InputFile from '../../simple/CustomInputs/InputFile';
 
 // Utilities
 import styles from './WizardForm.module.scss';
@@ -23,8 +25,13 @@ const WizardFormFirstStep = props => {
 
   return (
     <React.Fragment>
-      <div className={styles.formHeader}>Dodaj</div>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      <div className={classNames(styles.formHeader)}>Dodaj</div>
+      <form
+        onSubmit={handleSubmit}
+        className={classNames(styles.form, {
+          [styles.disabled]: submitting,
+        })}
+      >
         <Field
           name="title"
           placeholder=" "
@@ -32,6 +39,14 @@ const WizardFormFirstStep = props => {
           type="text"
           validate={[isRequired]}
           label="Tytuł"
+        />
+        <Field
+          name="family"
+          placeholder=" "
+          component={CustomInput}
+          type="text"
+          validate={[isRequired]}
+          label="Rodzina"
         />
         <Field
           name="description"
@@ -42,6 +57,9 @@ const WizardFormFirstStep = props => {
           validate={[isRequired]}
           label="Treść"
         />
+
+        <Field name="image" placeholder=" " component={InputFile} type="file" label="Plik" />
+        <br />
         <div className={styles.modalNavigation}>
           {pristine ? null : (
             <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
@@ -105,7 +123,7 @@ export default connect(
   mapDispatchToProps,
 )(
   reduxForm({
-    form: 'addNewCompositionForm',
+    form: 'addNewSpecimenForm',
     enableReinitialize: true,
     destroyOnUnmount: false,
     forceUnregisterOnUnmount: true,
