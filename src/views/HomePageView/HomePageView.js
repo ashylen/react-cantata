@@ -53,6 +53,8 @@ class HomePageView extends Component {
       } catch (error) {
         throw new Error(error);
       }
+    } else {
+      this.setState({ isFetching: false });
     }
   };
 

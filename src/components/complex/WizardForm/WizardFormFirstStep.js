@@ -49,7 +49,7 @@ const WizardFormFirstStep = props => {
             </Button>
           )}
           <Button type="submit" disabled={submitting}>
-            Next
+            Dodaj
           </Button>
         </div>
       </form>
