@@ -29,25 +29,45 @@ export const fetchArticle = id => async dispatch => {
 };
 
 export const addArticle = data => async dispatch => {
-  let formData = new FormData();
-  formData.append('files', data.image);
-  let file;
+  let formDataImage = new FormData();
+  let formDataGalleryImages = new FormData();
+  formDataImage.append('files', data.image[0]);
+  data.gallery_images &&
+    data.gallery_images.forEach(image => formDataGalleryImages.append('files', image));
+
+  let image;
+  let galleryImages;
   try {
     if (!!data.image) {
-      file = await axiosAuthInstance({
+      image = await axiosAuthInstance({
         method: 'POST',
         url: `/upload`,
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        data: formData,
+        data: formDataImage,
       });
     }
 
+    if (!!data.gallery_images) {
+      galleryImages = await axiosAuthInstance({
+        method: 'POST',
+        url: `/upload`,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        data: formDataGalleryImages,
+      });
+    }
+    // return;
     const response = await axiosAuthInstance({
       method: 'POST',
       url: `/articles`,
-      data: { ...data, image: file && file.data },
+      data: {
+        ...data,
+        image: image && image.data,
+        gallery_images: galleryImages && galleryImages.data,
+      },
     });
   } catch (error) {
     console.error(error);

@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
 import InputFile from '../../simple/CustomInputs/InputFile';
+import Dropzone from '../../simple/CustomInputs/Dropzone';
 
 // Utilities
 import styles from './AddArticlesForm.module.scss';
@@ -75,7 +76,8 @@ class AddArticlesForm extends React.Component {
               label="Treść"
             />
             <br />
-            <Field name="image" placeholder=" " component={InputFile} type="file" label="Obraz" />
+            <Field name="image" multiple={false} component={Dropzone} />
+            <Field name="gallery_images" multiple={true} component={Dropzone} />
             {/*  TO DO GALLERY IMAGES */}
             <br />
             <div className={styles.modalNavigation}>
