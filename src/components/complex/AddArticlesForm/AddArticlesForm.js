@@ -76,9 +76,8 @@ class AddArticlesForm extends React.Component {
               label="Treść"
             />
             <br />
-            <Field name="image" multiple={false} component={Dropzone} />
-            <Field name="gallery_images" multiple={true} component={Dropzone} />
-            {/*  TO DO GALLERY IMAGES */}
+            <Field name="image" label="Obraz główny" multiple={false} component={Dropzone} />
+            <Field name="gallery_images" label="Galeria" multiple={true} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>
               {pristine ? null : (

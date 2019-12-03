@@ -22,8 +22,6 @@ import ScrollTop from '../../hoc/ScrollTop';
 // import TripView from '../TripView/TripView';
 // TO DO:
 // Validator na logowaniu,
-// usuwanie artykułów
-// wyjazdy
 // słownik
 // button wylogowania
 // refractor
