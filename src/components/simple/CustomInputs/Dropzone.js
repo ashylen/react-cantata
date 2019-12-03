@@ -20,7 +20,6 @@ const DropzoneField = props => {
         <input multiple={multiple} {...getInputProps()} />
         {label}
         <Button type="button" style={{ maxWidth: '500px' }}>
-          {console.log(getInputProps())}
           {getInputProps().ref.current && !!getInputProps().ref.current.value
             ? getInputProps().ref.current.value
             : 'Kliknij tutaj, żeby dodać pliki'}
