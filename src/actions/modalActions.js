@@ -8,6 +8,10 @@ export const OPEN_ARTICLES_MODAL = 'OPEN_ARTICLES_MODAL';
 export const OPEN_ARTICLES_MODAL_FAILURE = 'OPEN_ARTICLES_MODAL_FAILURE';
 export const CLOSE_ARTICLES_MODAL = 'CLOSE_ARTICLES_MODAL';
 
+export const OPEN_TRIPS_MODAL = 'OPEN_TRIPS_MODAL';
+export const OPEN_TRIPS_MODAL_FAILURE = 'OPEN_TRIPS_MODAL_FAILURE';
+export const CLOSE_TRIPS_MODAL = 'CLOSE_TRIPS_MODAL';
+
 export const FETCH_SPECIMENS_ITEM_REQUEST = 'FETCH_SPECIMENS_ITEM_REQUEST';
 export const FETCH_SPECIMENS_ITEM_SUCCESS = 'FETCH_SPECIMENS_ITEM_SUCCESS';
 export const FETCH_SPECIMENS_ITEM_FAILURE = 'FETCH_SPECIMENS_ITEM_FAILURE';
@@ -65,5 +69,23 @@ export const openArticlesModal = () => dispatch => {
 export const closeArticlesModal = () => dispatch => {
   dispatch({
     type: CLOSE_ARTICLES_MODAL,
+  });
+};
+
+export const openTripsModal = () => dispatch => {
+  dispatch({
+    type: OPEN_TRIPS_MODAL,
+    trips: {
+      isModalOpen: true,
+      isEditMode: false,
+      idCurrentItem: null,
+      editItemData: {},
+    },
+  });
+};
+
+export const closeTripsModal = () => dispatch => {
+  dispatch({
+    type: CLOSE_TRIPS_MODAL,
   });
 };

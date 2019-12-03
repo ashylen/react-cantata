@@ -3,6 +3,8 @@ import {
   CLOSE_SPECIMENS_MODAL,
   OPEN_ARTICLES_MODAL,
   CLOSE_ARTICLES_MODAL,
+  OPEN_TRIPS_MODAL,
+  CLOSE_TRIPS_MODAL,
 } from '../actions/modalActions';
 
 const initialState = {
@@ -13,6 +15,12 @@ const initialState = {
     editItemData: {},
   },
   articles: {
+    isModalOpen: false,
+    isEditMode: false,
+    idCurrentItem: null,
+    editItemData: {},
+  },
+  trips: {
     isModalOpen: false,
     isEditMode: false,
     idCurrentItem: null,
@@ -56,6 +64,26 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         articles: {
+          isModalOpen: false,
+          isEditMode: false,
+          idCurrentItem: null,
+          editItemData: {},
+        },
+      };
+    case OPEN_TRIPS_MODAL:
+      return {
+        ...state,
+        trips: {
+          isModalOpen: action.trips.isModalOpen,
+          isEditMode: action.trips.isEditMode,
+          idCurrentItem: action.trips.idCurrentItem,
+          editItemData: action.trips.editItemData,
+        },
+      };
+    case CLOSE_TRIPS_MODAL:
+      return {
+        ...state,
+        trips: {
           isModalOpen: false,
           isEditMode: false,
           idCurrentItem: null,

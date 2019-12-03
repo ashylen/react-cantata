@@ -31,7 +31,7 @@ export const fetchArticle = id => async dispatch => {
 export const addArticle = data => async dispatch => {
   let formDataImage = new FormData();
   let formDataGalleryImages = new FormData();
-  formDataImage.append('files', data.image[0]);
+  data.image && formDataImage.append('files', data.image[0]);
   data.gallery_images &&
     data.gallery_images.forEach(image => formDataGalleryImages.append('files', image));
 
