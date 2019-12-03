@@ -136,3 +136,9 @@ $bg-color: #f5f6f6;
     display: none;
   }
 }
+
+.absoluteTopRightLight {
+  @extend .absoluteTopRight;
+
+  background-color: #fff;
+}

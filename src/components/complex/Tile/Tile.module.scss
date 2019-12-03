@@ -2,11 +2,18 @@
   // background-color: #f1f1f1;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25), 0 0 4px rgba(0, 0, 0, 0.25);
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+  background: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 3px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, color 0.3s;
+  height: 100%;
 
   &:hover {
-    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.25);
+    color: #dfa15b;
+    box-shadow: 0 2px 2px rgba(41, 47, 56, 0.1), 0 4px 4px rgba(41, 47, 56, 0.1),
+      0 8px 8px rgba(41, 47, 56, 0.1), 0 16px 16px rgba(41, 47, 56, 0.1),
+      0 32px 32px rgba(41, 47, 56, 0.1);
     transform: translateY(-2px);
 
     .image {
@@ -41,7 +48,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: #000;
+      background-color: rgba(238, 181, 117, 0.3);
       opacity: 0;
       transition: opacity 0.3s;
     }

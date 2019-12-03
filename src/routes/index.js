@@ -1,8 +1,8 @@
 export const routes = {
   home: '/',
-  articles: '/articles',
-  article: id => `/articles/${id}`,
-  trips: '/trips',
-  trip: id => `/trips/${id}`,
+  articles: '/artykuly',
+  article: id => `/artykuly/${id}`,
+  trips: '/wyjazdy',
+  trip: id => `/wyjazdy/${id}`,
   login: '/login',
 };

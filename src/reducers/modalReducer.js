@@ -1,7 +1,18 @@
-import { OPEN_SPECIMENS_MODAL, CLOSE_SPECIMENS_MODAL } from '../actions/modalActions';
+import {
+  OPEN_SPECIMENS_MODAL,
+  CLOSE_SPECIMENS_MODAL,
+  OPEN_ARTICLES_MODAL,
+  CLOSE_ARTICLES_MODAL,
+} from '../actions/modalActions';
 
 const initialState = {
   specimens: {
+    isModalOpen: false,
+    isEditMode: false,
+    idCurrentItem: null,
+    editItemData: {},
+  },
+  articles: {
     isModalOpen: false,
     isEditMode: false,
     idCurrentItem: null,
@@ -25,6 +36,26 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         specimens: {
+          isModalOpen: false,
+          isEditMode: false,
+          idCurrentItem: null,
+          editItemData: {},
+        },
+      };
+    case OPEN_ARTICLES_MODAL:
+      return {
+        ...state,
+        articles: {
+          isModalOpen: action.articles.isModalOpen,
+          isEditMode: action.articles.isEditMode,
+          idCurrentItem: action.articles.idCurrentItem,
+          editItemData: action.articles.editItemData,
+        },
+      };
+    case CLOSE_ARTICLES_MODAL:
+      return {
+        ...state,
+        articles: {
           isModalOpen: false,
           isEditMode: false,
           idCurrentItem: null,

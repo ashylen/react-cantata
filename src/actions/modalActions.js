@@ -4,6 +4,10 @@ export const OPEN_SPECIMENS_MODAL = 'OPEN_SPECIMENS_MODAL';
 export const OPEN_SPECIMENS_MODAL_FAILURE = 'OPEN_SPECIMENS_MODAL_FAILURE';
 export const CLOSE_SPECIMENS_MODAL = 'CLOSE_SPECIMENS_MODAL';
 
+export const OPEN_ARTICLES_MODAL = 'OPEN_ARTICLES_MODAL';
+export const OPEN_ARTICLES_MODAL_FAILURE = 'OPEN_ARTICLES_MODAL_FAILURE';
+export const CLOSE_ARTICLES_MODAL = 'CLOSE_ARTICLES_MODAL';
+
 export const FETCH_SPECIMENS_ITEM_REQUEST = 'FETCH_SPECIMENS_ITEM_REQUEST';
 export const FETCH_SPECIMENS_ITEM_SUCCESS = 'FETCH_SPECIMENS_ITEM_SUCCESS';
 export const FETCH_SPECIMENS_ITEM_FAILURE = 'FETCH_SPECIMENS_ITEM_FAILURE';
@@ -43,5 +47,23 @@ export const openSpecimensModal = (isEditMode, idCurrentItem) => dispatch => {
 export const closeSpecimensModal = () => dispatch => {
   dispatch({
     type: CLOSE_SPECIMENS_MODAL,
+  });
+};
+
+export const openArticlesModal = () => dispatch => {
+  dispatch({
+    type: OPEN_ARTICLES_MODAL,
+    articles: {
+      isModalOpen: true,
+      isEditMode: false,
+      idCurrentItem: null,
+      editItemData: {},
+    },
+  });
+};
+
+export const closeArticlesModal = () => dispatch => {
+  dispatch({
+    type: CLOSE_ARTICLES_MODAL,
   });
 };

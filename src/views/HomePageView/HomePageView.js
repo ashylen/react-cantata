@@ -24,6 +24,7 @@ import Button from '../../components/simple/Button/Button';
 import Modal from '../../components/complex/Modal/Modal';
 import ContactView from '../ContactView/ContactView';
 import MainTemplate from '../../templates/MainTemplate';
+import AddContentForm from '../../components/complex/AddContentForm/AddContentForm';
 
 class HomePageView extends Component {
   state = {
@@ -71,7 +72,9 @@ class HomePageView extends Component {
           classNames={{ ...fadeTransition }}
           unmountOnExit
         >
-          <Modal closeModalFn={closeSpecimensModal} />
+          <Modal closeModalFn={closeSpecimensModal}>
+            <AddContentForm closeModalFn={closeSpecimensModal} />
+          </Modal>
         </CSSTransition>
         <article id="specimens" className={styles.article}>
           <div className={styles.wrapper}>

@@ -14,6 +14,8 @@ const GetButtonClassName = inputClass => {
       return styles.buttonFixed;
     case 'absoluteTR':
       return styles.absoluteTopRight;
+    case 'absoluteTRLight':
+      return styles.absoluteTopRightLight;
     default:
       return styles.button;
   }

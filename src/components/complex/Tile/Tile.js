@@ -1,18 +1,19 @@
 import React from 'react';
 
+// Modules
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
+// Utils
 import { routes } from '../../../routes';
-
 import styles from './Tile.module.scss';
 
 const Tile = ({ data, routeName }) => {
   return (
     <article className={styles.article}>
-      {data.main_image && (
+      {data.image && (
         <div className={styles.image}>
-          <img src={`${process.env.REACT_APP_API_URL}${data.main_image.url}`} />
+          <img src={`${process.env.REACT_APP_API_URL}${data.image.url}`} />
         </div>
       )}
       <div className={styles.bottom}>
