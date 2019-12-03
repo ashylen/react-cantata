@@ -10,7 +10,7 @@ import classNames from 'classnames';
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
-import InputFile from '../../simple/CustomInputs/InputFile';
+import Dropzone from '../../simple/CustomInputs/Dropzone';
 
 // Utilities
 import styles from './AddContentForm.module.scss';
@@ -82,8 +82,7 @@ class AddContentForm extends React.Component {
               validate={[isRequired]}
               label="Treść"
             />
-
-            <Field name="image" placeholder=" " component={InputFile} type="file" label="Obraz" />
+            <Field name="image" label="Obraz główny" multiple={false} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>
               {pristine ? null : (

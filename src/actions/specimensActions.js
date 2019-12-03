@@ -32,7 +32,7 @@ export const addSpecimen = itemContent => async dispatch => {
   dispatch({ type: ADD_SPECIMENS_REQUEST });
 
   let formData = new FormData();
-  formData.append('files', itemContent.image);
+  itemContent.image && formData.append('files', itemContent.image[0]);
   let file;
   try {
     if (!!itemContent.image) {
