@@ -34,6 +34,8 @@
   .image {
     position: relative;
     display: flex;
+    max-height: 217px;
+    overflow: hidden;
 
     img {
       width: 100%;
