@@ -15,7 +15,7 @@ const DropzoneField = props => {
     <div>
       <div {...getRootProps()}>
         <input multiple={multiple} {...getInputProps()} />
-        <p>Drop files here</p>
+        <p>Kliknij tutaj, żeby dodać pliki</p>
       </div>
     </div>
   );
