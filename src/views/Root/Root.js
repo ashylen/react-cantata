@@ -16,6 +16,7 @@ import HomePageView from '../HomePageView/HomePageView';
 import ArticlesView from '../ArticlesView/ArticlesView';
 import ArticleView from '../ArticleView/ArticleView';
 import TripsView from '../TripsView/TripsView';
+import TripView from '../TripView/TripView';
 import LoginView from '../LoginView/LoginView';
 import ScrollTop from '../../hoc/ScrollTop';
 // import TripView from '../TripView/TripView';
@@ -38,6 +39,7 @@ const Root = () => {
             <Route exact path={routes.articles} component={ArticlesView} />
             <Route exact path={routes.article(':id')} component={ArticleView} />
             <Route exact path={routes.trips} component={TripsView} />
+            <Route exact path={routes.trip(':id')} component={TripView} />
             <Route exact path={routes.login} component={LoginView} />
           </Switch>
         </ScrollTop>

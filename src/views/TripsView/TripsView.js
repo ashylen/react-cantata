@@ -61,7 +61,7 @@ const TripsView = () => {
         <article className={styles.container}>
           <SectionTitle textCustomize="gradient">Wyjazdy</SectionTitle>
           <div className={styles.tripsWrapper}>
-            {!!trips &&
+            {!!trips && trips.length > 0 ? (
               trips.map(trip => (
                 <div className={styles.trip}>
                   {!!user && user.username === 'admin' && (
@@ -75,7 +75,10 @@ const TripsView = () => {
                   )}
                   <Tile routeName="trip" key={trip.id} data={trip} />
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className={styles.trip}>Brak elementów w tej sekcji</div>
+            )}
           </div>
         </article>
         {!!user && user.username === 'admin' && (
