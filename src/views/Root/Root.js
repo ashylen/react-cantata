@@ -18,15 +18,15 @@ import ArticleView from '../ArticleView/ArticleView';
 import TripsView from '../TripsView/TripsView';
 import TripView from '../TripView/TripView';
 import LoginView from '../LoginView/LoginView';
+import DictionaryView from '../DictionaryView/DictionaryView';
 import ScrollTop from '../../hoc/ScrollTop';
-// import TripView from '../TripView/TripView';
 // TO DO:
-// Validator na logowaniu,
 // słownik
 // button wylogowania
 // refractor
 // Snackbary do akcji
 // przerobic wszystkie requesty na try catch i uzeby uzywaly axiosauth/nonauth
+// Paginacja artykułów
 const Root = () => {
   return (
     <Provider store={store}>
@@ -39,6 +39,7 @@ const Root = () => {
             <Route exact path={routes.trips} component={TripsView} />
             <Route exact path={routes.trip(':id')} component={TripView} />
             <Route exact path={routes.login} component={LoginView} />
+            <Route exact path={routes.dictionary} component={DictionaryView} />
           </Switch>
         </ScrollTop>
       </ConnectedRouter>

@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 // Utils
 import { routes } from '../../routes';
 import { fetchArticle } from '../../actions/articlesActions';
+import { fetchDictionary } from '../../actions/dictionaryActions';
 import styles from './ArticleView.module.scss';
 
 // Components
@@ -19,6 +20,7 @@ import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
 
 const ArticleView = props => {
   const { article } = useSelector(state => ({ article: state.articles.article }));
+  const { dictionary } = useSelector(state => ({ dictionary: state.dictionary.dictionary }));
   const [isFetching, setIsFetching] = useState(true);
   const dispatch = useDispatch();
   const params = useParams();
@@ -26,11 +28,20 @@ const ArticleView = props => {
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(fetchArticle(params.id));
+      await dispatch(fetchDictionary());
       setIsFetching(false);
     };
 
     fetchData();
   }, []);
+
+  const checkForKeywords = text => {
+    console.log(text);
+    dictionary.map(item => {
+      console.log(text.indexOf(item.keyword));
+    });
+    return text;
+  };
 
   return (
     <>
@@ -51,7 +62,7 @@ const ArticleView = props => {
                 </a>
               )}
             </picture> */}
-            <p className={styles.text}>{article && article.content}</p>
+            <p className={styles.text}>{article && checkForKeywords(article.content)}</p>
 
             <div className={styles.galleryWrapper}>
               {article &&

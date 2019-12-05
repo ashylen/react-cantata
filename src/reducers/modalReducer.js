@@ -5,6 +5,8 @@ import {
   CLOSE_ARTICLES_MODAL,
   OPEN_TRIPS_MODAL,
   CLOSE_TRIPS_MODAL,
+  OPEN_DICTIONARY_MODAL,
+  CLOSE_DICTIONARY_MODAL,
 } from '../actions/modalActions';
 
 const initialState = {
@@ -21,6 +23,12 @@ const initialState = {
     editItemData: {},
   },
   trips: {
+    isModalOpen: false,
+    isEditMode: false,
+    idCurrentItem: null,
+    editItemData: {},
+  },
+  dictionary: {
     isModalOpen: false,
     isEditMode: false,
     idCurrentItem: null,
@@ -84,6 +92,27 @@ const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         trips: {
+          isModalOpen: false,
+          isEditMode: false,
+          idCurrentItem: null,
+          editItemData: {},
+        },
+      };
+    case OPEN_DICTIONARY_MODAL:
+      console.log(action);
+      return {
+        ...state,
+        dictionary: {
+          isModalOpen: action.dictionary.isModalOpen,
+          isEditMode: action.dictionary.isEditMode,
+          idCurrentItem: action.dictionary.idCurrentItem,
+          editItemData: action.dictionary.editItemData,
+        },
+      };
+    case CLOSE_DICTIONARY_MODAL:
+      return {
+        ...state,
+        dictionary: {
           isModalOpen: false,
           isEditMode: false,
           idCurrentItem: null,

@@ -12,6 +12,9 @@ export const OPEN_TRIPS_MODAL = 'OPEN_TRIPS_MODAL';
 export const OPEN_TRIPS_MODAL_FAILURE = 'OPEN_TRIPS_MODAL_FAILURE';
 export const CLOSE_TRIPS_MODAL = 'CLOSE_TRIPS_MODAL';
 
+export const OPEN_DICTIONARY_MODAL = 'OPEN_DICTIONARY_MODAL';
+export const CLOSE_DICTIONARY_MODAL = 'CLOSE_DICTIONARY_MODAL';
+
 export const FETCH_SPECIMENS_ITEM_REQUEST = 'FETCH_SPECIMENS_ITEM_REQUEST';
 export const FETCH_SPECIMENS_ITEM_SUCCESS = 'FETCH_SPECIMENS_ITEM_SUCCESS';
 export const FETCH_SPECIMENS_ITEM_FAILURE = 'FETCH_SPECIMENS_ITEM_FAILURE';
@@ -87,5 +90,23 @@ export const openTripsModal = () => dispatch => {
 export const closeTripsModal = () => dispatch => {
   dispatch({
     type: CLOSE_TRIPS_MODAL,
+  });
+};
+
+export const openDictionaryModal = () => dispatch => {
+  dispatch({
+    type: OPEN_DICTIONARY_MODAL,
+    dictionary: {
+      isModalOpen: true,
+      isEditMode: false,
+      idCurrentItem: null,
+      editItemData: {},
+    },
+  });
+};
+
+export const closeDictionaryModal = () => dispatch => {
+  dispatch({
+    type: CLOSE_DICTIONARY_MODAL,
   });
 };

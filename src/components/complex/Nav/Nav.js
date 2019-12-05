@@ -64,7 +64,7 @@ const Nav = ({ isHomePage }) => {
               <Link to={routes.trips}>Wyjazdy</Link>
             </div>
             <div className={styles.item}>
-              <Link to={routes.home}>Słownik</Link>
+              <Link to={routes.dictionary}>Słownik</Link>
             </div>
           </div>
         )}

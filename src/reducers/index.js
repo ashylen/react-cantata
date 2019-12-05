@@ -6,12 +6,14 @@ import specimens from './specimensReducer';
 import modals from './modalReducer';
 import trips from './tripsReducer';
 import users from './usersReducer';
+import dictionary from './dictionaryReducer';
 
 const rootReducer = history =>
   combineReducers({
     articles,
-    specimens,
+    dictionary,
     modals,
+    specimens,
     trips,
     users,
     form: formReducer,
