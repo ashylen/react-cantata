@@ -80,11 +80,11 @@ class AddTripsForm extends React.Component {
             <Field name="gallery_images" label="Galeria" multiple={true} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>
-              {pristine ? null : (
+              {/* {pristine ? null : (
                 <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
                   Wyczyść
                 </Button>
-              )}
+              )} */}
               <Button type="submit" disabled={submitting}>
                 Dodaj
               </Button>
