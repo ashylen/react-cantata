@@ -4,10 +4,12 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { SubmissionError } from 'redux-form';
 
 // Utils
 import * as usersActions from '../../actions/usersActions';
 import styles from './LoginView.module.scss';
+import { required as isRequired } from '../../utilities/Validators/required';
 
 // Components
 import Button from '../../components/simple/Button/Button';
@@ -15,10 +17,20 @@ import CustomInput from '../../components/simple/CustomInputs/CustomInput';
 import MainTemplate from '../../templates/MainTemplate';
 
 class LoginView extends Component {
-  submit = values => {
+  submit = async values => {
     const { identifier, password } = values;
 
-    this.props.login(identifier, password);
+    try {
+      const response = await this.props.login(identifier, password);
+    } catch (error) {
+      if (error.response.data.message === 'Identifier or password invalid.') {
+        throw new SubmissionError({ password: 'Nazwa użytkownika lub hasło są nieprawidłowe' });
+      } else if (error.response.data.message === 'Please provide your username or your e-mail.') {
+        throw new SubmissionError({ password: 'Wprowadź wymagane dane' });
+      } else {
+        console.error(error.response.data);
+      }
+    }
   };
 
   render() {
@@ -34,6 +46,7 @@ class LoginView extends Component {
               tag="input"
               type="text"
               placeholder="Email"
+              validate={[isRequired]}
             />
             <Field
               name="password"
@@ -41,7 +54,10 @@ class LoginView extends Component {
               tag="input"
               type="password"
               placeholder="Password"
+              validate={[isRequired]}
             />
+            <br />
+            <br />
             <Button> Zaloguj się</Button>
           </form>
         </div>

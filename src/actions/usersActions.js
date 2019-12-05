@@ -20,8 +20,7 @@ export const login = (identifier, password) => async dispatch => {
     localStorage.setItem('token', response.data.jwt);
     history.push('/');
   } catch (error) {
-    // TO DO Tutaj zrobić jakiś error handling
-    console.error(error);
+    throw error;
   }
 };
 
