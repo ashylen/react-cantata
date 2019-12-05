@@ -19,10 +19,23 @@ const DropzoneField = props => {
       <div {...getRootProps()}>
         <input multiple={multiple} {...getInputProps()} />
         {label}
-        <Button type="button" style={{ maxWidth: '500px' }}>
-          {getInputProps().ref.current && !!getInputProps().ref.current.value
-            ? getInputProps().ref.current.value
+        <Button
+          type="button"
+          style={{
+            maxWidth: '500px',
+            fontSize:
+              getInputProps().ref.current && !!getInputProps().ref.current.value ? '7px' : '12px',
+          }}
+        >
+          {getInputProps().ref.current && !!getInputProps().ref.current.files
+            ? Array.from(getInputProps().ref.current.files).map(file => (
+                <>
+                  {file.name}
+                  <br />
+                </>
+              ))
             : 'Kliknij tutaj, żeby dodać pliki'}
+          {console.log(getInputProps())}
         </Button>
       </div>
     </div>
