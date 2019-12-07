@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
 import InputFile from '../../simple/CustomInputs/InputFile';
-import Dropzone from '../../simple/CustomInputs/Dropzone';
+import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 
 // Utilities
 import styles from './AddTripsForm.module.scss';

@@ -20,15 +20,15 @@ const axiosNonAuthInstance = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-const axiosAuthInstance = axios.create({
+const axiosAuthorized = axios.create({
   baseURL: process.env.REACT_APP_API_URL,
 });
 
-axiosAuthInstance.interceptors.request.use(useToken, error => {
+axiosAuthorized.interceptors.request.use(useToken, error => {
   return Promise.reject(error);
 });
 
-axiosAuthInstance.interceptors.response.use(
+axiosAuthorized.interceptors.response.use(
   response => response,
   error => {
     if (error.response) {
@@ -51,4 +51,4 @@ axiosAuthInstance.interceptors.response.use(
   },
 );
 
-export { axiosNonAuthInstance, axiosAuthInstance };
+export { axiosNonAuthInstance, axiosAuthorized };

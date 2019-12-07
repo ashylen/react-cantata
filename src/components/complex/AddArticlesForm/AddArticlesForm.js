@@ -11,25 +11,29 @@ import classNames from 'classnames';
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
 import InputFile from '../../simple/CustomInputs/InputFile';
-import Dropzone from '../../simple/CustomInputs/Dropzone';
+import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 
 // Utilities
 import styles from './AddArticlesForm.module.scss';
-import {
-  addArticle as addArticleAction,
-  fetchArticles as fetchArticlesAction,
-} from '../../../actions/articlesActions';
+import * as articlesActions from '../../../actions/articlesActions';
 import { required as isRequired } from '../../../utilities/Validators/required';
 import { maxLength } from '../../../utilities/Validators/maxLength';
 import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
 class AddArticlesForm extends React.Component {
   handleSubmit = async formData => {
-    const { addArticle, closeModalFn, idCurrentItem, fetchArticles } = this.props;
+    const {
+      addArticle,
+      closeModalFn,
+      idCurrentItem,
+      fetchArticles,
+      articlesLimit,
+      articlesPage,
+    } = this.props;
 
     try {
       await addArticle(formData);
-      await fetchArticles();
+      await fetchArticles(articlesLimit, articlesPage);
     } catch (e) {
       console.error(e);
     }
@@ -108,8 +112,8 @@ AddArticlesForm.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchArticles: () => dispatch(fetchArticlesAction()),
-  addArticle: itemContent => dispatch(addArticleAction(itemContent)),
+  fetchArticles: bindActionCreators(articlesActions.fetchArticles, dispatch),
+  addArticle: bindActionCreators(articlesActions.addArticle, dispatch),
   reset: bindActionCreators(resetReduxForm, dispatch),
 });
 

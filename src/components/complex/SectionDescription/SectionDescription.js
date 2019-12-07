@@ -1,13 +1,14 @@
-import React from "react";
+import React from 'react';
 
 // Modules
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 // Utilities
-import styles from "./SectionDescription.module.scss";
+import styles from './SectionDescription.module.scss';
 
-const SectionDescription = ({ children }) => (
-  <h2 className={styles.description}>{children}</h2>
+const SectionDescription = ({ children, left }) => (
+  <h2 className={classNames(styles.description, { [styles.left]: left })}>{children}</h2>
 );
 
 SectionDescription.propTypes = {

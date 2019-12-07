@@ -1,15 +1,25 @@
 import axios from 'axios';
-import { axiosAuthInstance } from '../helpers/auth/interceptors';
+import { axiosAuthorized } from '../helpers/auth/interceptors';
 
 export const FETCH_ARTICLES = 'FETCH_ARTICLES';
 export const FETCH_ARTICLE = 'FETCH_ARTICLE';
 
-export const fetchArticles = () => async dispatch => {
+export const fetchArticles = (limit, page = 1) => async dispatch => {
+  console.log('ddd', limit);
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/articles`);
+    const responseCount = await axios.get(`${process.env.REACT_APP_API_URL}/articles/count`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/articles`, {
+      params: {
+        _limit: limit && limit * page,
+        _sort: 'created_at:DESC',
+      },
+    });
     dispatch({
       type: FETCH_ARTICLES,
-      payload: response.data,
+      payload: {
+        data: response.data,
+        count: responseCount.data,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -39,7 +49,7 @@ export const addArticle = data => async dispatch => {
   let galleryImages;
   try {
     if (!!data.image) {
-      image = await axiosAuthInstance({
+      image = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -50,7 +60,7 @@ export const addArticle = data => async dispatch => {
     }
 
     if (!!data.gallery_images) {
-      galleryImages = await axiosAuthInstance({
+      galleryImages = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -60,7 +70,7 @@ export const addArticle = data => async dispatch => {
       });
     }
     // return;
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'POST',
       url: `/articles`,
       data: {
@@ -77,7 +87,7 @@ export const addArticle = data => async dispatch => {
 
 export const deleteArticle = id => async dispatch => {
   try {
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'DELETE',
       url: `/articles/${id}`,
     });

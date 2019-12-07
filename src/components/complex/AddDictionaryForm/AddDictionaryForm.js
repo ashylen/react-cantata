@@ -11,7 +11,7 @@ import classNames from 'classnames';
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
 import InputFile from '../../simple/CustomInputs/InputFile';
-import Dropzone from '../../simple/CustomInputs/Dropzone';
+import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 
 // Utilities
 import styles from './AddDictionaryForm.module.scss';
@@ -37,8 +37,18 @@ class AddDictionaryForm extends React.Component {
     closeModalFn();
   };
 
+  uniqueKeywordValidator = value => {
+    const { dictionary } = this.props;
+
+    if (dictionary.find(item => item.keyword === value)) {
+      return 'Wpisana fraza już istnieje w słowniku';
+    } else {
+      return undefined;
+    }
+  };
+
   render() {
-    const { handleSubmit, reset, pristine, submitting } = this.props;
+    const { handleSubmit, reset, pristine, submitting, dictionary } = this.props;
 
     return (
       <React.Fragment>
@@ -55,17 +65,25 @@ class AddDictionaryForm extends React.Component {
               placeholder=" "
               component={CustomInput}
               type="text"
-              validate={[isRequired]}
+              validate={[isRequired, this.uniqueKeywordValidator]}
               label="Fraza"
             />
-            {/* <Field
+            <Field
               name="short_text"
               placeholder=" "
               component={CustomInput}
               type="text"
               validate={[isRequired]}
-              label="Krótki opis"
-            /> */}
+              label="Krótki opis (widoczny na liście)"
+            />
+            <Field
+              name="hover_text"
+              placeholder=" "
+              component={CustomInput}
+              type="text"
+              validate={[isRequired]}
+              label="Opis po najechaniu na link"
+            />
             <Field
               name="description"
               placeholder=" "

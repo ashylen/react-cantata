@@ -13,32 +13,37 @@ import fadeTransition from '../../utilities/CSS/Transitions/fade.module.scss';
 
 // Components
 import Tile from '../../components/complex/Tile/Tile';
-import Header from '../../components/complex/Header/Header';
-import Footer from '../../components/complex/Footer/Footer';
 import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
 import Preloader from '../../components/simple/Preloader/Preloader';
 import Button from '../../components/simple/Button/Button';
 import MainTemplate from '../../templates/MainTemplate';
 import AddArticlesForm from '../../components/complex/AddArticlesForm/AddArticlesForm';
 import Modal from '../../components/complex/Modal/Modal';
+import Pagination from '../../components/complex/Pagination/Pagination';
 
 const ArticlesView = () => {
   const { isModalOpen } = useSelector(state => ({
     isModalOpen: state.modals.articles.isModalOpen,
   }));
-  const { articles } = useSelector(state => ({ articles: state.articles.articles }));
+  const { articles } = useSelector(state => ({ articles: state.articles.articles.data }));
+  const { articlesCount } = useSelector(state => ({
+    articlesCount: state.articles.articles.count,
+  }));
   const { user } = useSelector(state => ({ user: state.users.user }));
   const [isFetching, setIsFetching] = useState(true);
   const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
   useEffect(() => {
+    setIsFetching(true);
     const fetchData = async () => {
-      await dispatch(fetchArticles());
+      await dispatch(fetchArticles(limit, page));
       setIsFetching(false);
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   const handleArticleDelete = async id => {
     setIsFetching(true);
@@ -46,7 +51,7 @@ const ArticlesView = () => {
     if (window.confirm('Na pewno chcesz usunąć ten artykuł?')) {
       try {
         await dispatch(deleteArticle(id));
-        await dispatch(fetchArticles());
+        await dispatch(fetchArticles(limit, page));
         setIsFetching(false);
       } catch (error) {
         throw new Error(error);
@@ -82,6 +87,10 @@ const ArticlesView = () => {
               <div className={styles.trip}>Brak elementów w tej sekcji</div>
             )}
           </div>
+          <br />
+          {articles && articles.length < articlesCount && (
+            <Button onClick={() => setPage(page + 1)}>Wczytaj więcej</Button>
+          )}
         </article>
         {!!user && user.username === 'admin' && (
           <Button
@@ -100,9 +109,14 @@ const ArticlesView = () => {
           unmountOnExit
         >
           <Modal closeModalFn={() => dispatch(closeArticlesModal())}>
-            <AddArticlesForm closeModalFn={() => dispatch(closeArticlesModal())} />
+            <AddArticlesForm
+              articlesLimit={limit}
+              articlesPage={page}
+              closeModalFn={() => dispatch(closeArticlesModal())}
+            />
           </Modal>
         </CSSTransition>
+        {/* <Pagination pagesCount={page} setPage={setPage} /> */}
       </section>
     </MainTemplate>
   );

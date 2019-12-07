@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 // Modules
 import { useSelector, useDispatch } from 'react-redux';
 import { CSSTransition } from 'react-transition-group';
+import { Link } from 'react-router-dom';
 
 // Utils
 import { fetchDictionary } from '../../actions/dictionaryActions';
@@ -10,15 +11,16 @@ import styles from './DictionaryView.module.scss';
 import { deleteDictionary } from '../../actions/dictionaryActions';
 import { openDictionaryModal, closeDictionaryModal } from '../../actions/modalActions';
 import fadeTransition from '../../utilities/CSS/Transitions/fade.module.scss';
+import { routes } from '../../routes';
 
 // Components
-import Tile from '../../components/complex/Tile/Tile';
 import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
 import Preloader from '../../components/simple/Preloader/Preloader';
 import Button from '../../components/simple/Button/Button';
 import MainTemplate from '../../templates/MainTemplate';
 import AddDictionaryForm from '../../components/complex/AddDictionaryForm/AddDictionaryForm';
 import Modal from '../../components/complex/Modal/Modal';
+import SectionDescription from '../../components/complex/SectionDescription/SectionDescription';
 
 const DictionaryView = () => {
   const { isModalOpen } = useSelector(state => ({
@@ -60,13 +62,22 @@ const DictionaryView = () => {
       <section>
         <div className={styles.dictionary}>
           <article className={styles.container}>
-            {dictionary &&
+            <SectionTitle textCustomize="gradient">SŁOWNIK</SectionTitle>
+            {dictionary && dictionary.length > 0 ? (
               dictionary.map(item => (
-                <div className={styles.dictionary} key={item.id}>
+                <div className={styles.dictionaryItem} key={item.id}>
                   {item && (
                     <div id={item.id} className={styles.dictionaryWrapper}>
-                      <SectionTitle textCustomize="gradient">#{item.keyword}</SectionTitle>
-                      <p className={styles.text}>{item.description}</p>
+                      <Link
+                        key={item.id}
+                        className={styles.dictionaryLink}
+                        title={item.hover_text}
+                        to={routes.dictionaryItem(item.id)}
+                      >
+                        <SectionDescription left>{item.keyword}</SectionDescription>
+                      </Link>
+                      <p className={styles.text}>{item.short_text}</p>
+                      <br />
                     </div>
                   )}
 
@@ -80,7 +91,10 @@ const DictionaryView = () => {
                     </Button>
                   )}
                 </div>
-              ))}
+              ))
+            ) : (
+              <div className={styles.trip}>Brak elementów w tej sekcji</div>
+            )}
 
             <br />
           </article>
@@ -102,7 +116,10 @@ const DictionaryView = () => {
           unmountOnExit
         >
           <Modal closeModalFn={() => dispatch(closeDictionaryModal())}>
-            <AddDictionaryForm closeModalFn={() => dispatch(closeDictionaryModal())} />
+            <AddDictionaryForm
+              dictionary={dictionary}
+              closeModalFn={() => dispatch(closeDictionaryModal())}
+            />
           </Modal>
         </CSSTransition>
       </section>

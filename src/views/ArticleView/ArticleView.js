@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import reactStringReplace from 'react-string-replace';
 
 // Utils
 import { routes } from '../../routes';
@@ -36,11 +37,25 @@ const ArticleView = props => {
   }, []);
 
   const checkForKeywords = text => {
-    console.log(text);
-    dictionary.map(item => {
-      console.log(text.indexOf(item.keyword));
-    });
-    return text;
+    if (dictionary && dictionary.length > 0) {
+      const textWithDictionaryItems = dictionary.map(item => {
+        const result = reactStringReplace(text, item.keyword, (match, i) => (
+          <Link
+            key={i}
+            className={styles.dictionaryLink}
+            title={item.hover_text}
+            to={routes.dictionaryItem(item.id)}
+          >
+            {item.keyword}
+          </Link>
+        ));
+
+        return result;
+      });
+      return textWithDictionaryItems;
+    } else {
+      return text;
+    }
   };
 
   return (
@@ -51,18 +66,7 @@ const ArticleView = props => {
         <article className={styles.container}>
           <div className={styles.articlesWrapper}>
             <SectionTitle textCustomize="gradient">{article && article.title}</SectionTitle>
-            {/* <picture className={styles.image}>
-              {article && (
-                <a
-                  href={`${process.env.REACT_APP_API_URL}${article.image.url}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={`${process.env.REACT_APP_API_URL}${article.image.url}`} />
-                </a>
-              )}
-            </picture> */}
-            <p className={styles.text}>{article && checkForKeywords(article.content)}</p>
+            <div className={styles.text}>{article && checkForKeywords(article.content)}</div>
 
             <div className={styles.galleryWrapper}>
               {article &&

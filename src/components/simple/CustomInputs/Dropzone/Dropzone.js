@@ -2,7 +2,8 @@ import React from 'react';
 
 import { useDropzone } from 'react-dropzone';
 
-import Button from '../Button/Button';
+import Button from '../../Button/Button';
+import styles from './Dropzone.module.scss';
 
 const DropzoneField = props => {
   const {
@@ -15,7 +16,7 @@ const DropzoneField = props => {
   });
 
   return (
-    <div>
+    <div className={styles.dropzoneWrapper}>
       <div {...getRootProps()}>
         <input multiple={multiple} {...getInputProps()} />
         {label}
@@ -27,7 +28,7 @@ const DropzoneField = props => {
               getInputProps().ref.current && !!getInputProps().ref.current.value ? '7px' : '12px',
           }}
         >
-          {getInputProps().ref.current && !!getInputProps().ref.current.files
+          {getInputProps().ref.current && getInputProps().ref.current.files.length > 0
             ? Array.from(getInputProps().ref.current.files).map(file => (
                 <>
                   {file.name}

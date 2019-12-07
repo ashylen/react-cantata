@@ -4,8 +4,13 @@
   margin: 40px auto;
 
   .articlesWrapper {
-    p {
+    .text {
       white-space: pre-line;
+
+      .dictionaryLink {
+        text-decoration: underline;
+        font-weight: 500;
+      }
     }
 
     .galleryWrapper {

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { history } from '../store';
 
-import { axiosAuthInstance } from '../helpers/auth/interceptors';
+import { axiosAuthorized } from '../helpers/auth/interceptors';
 
 export const FETCH_USER = 'FETCH_USER';
 
@@ -32,7 +32,7 @@ export const fetchUserByToken = () => async dispatch => {
   }
 
   try {
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'GET',
       url: `/users/me`,
     });

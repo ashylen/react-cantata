@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { axiosAuthInstance } from '../helpers/auth/interceptors';
+import { axiosAuthorized } from '../helpers/auth/interceptors';
 
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const FETCH_TRIP = 'FETCH_TRIP';
@@ -39,7 +39,7 @@ export const addTrip = data => async dispatch => {
   let galleryImages;
   try {
     if (!!data.image) {
-      image = await axiosAuthInstance({
+      image = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -50,7 +50,7 @@ export const addTrip = data => async dispatch => {
     }
 
     if (!!data.gallery_images) {
-      galleryImages = await axiosAuthInstance({
+      galleryImages = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -60,7 +60,7 @@ export const addTrip = data => async dispatch => {
       });
     }
     // return;
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'POST',
       url: `/trips`,
       data: {
@@ -77,7 +77,7 @@ export const addTrip = data => async dispatch => {
 
 export const deleteTrip = id => async dispatch => {
   try {
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'DELETE',
       url: `/trips/${id}`,
     });

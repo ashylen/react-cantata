@@ -1,16 +1,22 @@
-.container {
-  max-width: 1400px;
-  width: 90%;
-  margin: 40px auto;
-
-  h1 {
-    text-align: center;
-    font-weight: 400;
-    font-size: 2rem;
-    margin-bottom: 40px;
-  }
-}
-
 .dictionary {
   position: relative;
+
+  .dictionaryItem {
+    position: relative;
+    padding: 10px;
+    border-top: 1px solid #d1d1d1;
+  }
+
+  .container {
+    max-width: 1400px;
+    width: 90%;
+    margin: 40px auto;
+
+    // h1 {
+    //   text-align: center;
+    //   font-weight: 400;
+    //   font-size: 2rem;
+    //   margin-bottom: 40px;
+    // }
+  }
 }

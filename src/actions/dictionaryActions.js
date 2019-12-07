@@ -1,11 +1,31 @@
 import axios from 'axios';
-import { axiosAuthInstance } from '../helpers/auth/interceptors';
+import { axiosAuthorized } from '../helpers/auth/interceptors';
 
 export const FETCH_DICTIONARY = 'FETCH_DICTIONARY';
+export const FETCH_DICTIONARY_ITEM = 'FETCH_DICTIONARY_ITEM';
 
-export const fetchDictionary = id => async dispatch => {
+export const fetchDictionaryItem = id => async dispatch => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/dictionaries`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/dictionaries/${id}`);
+    dispatch({
+      type: FETCH_DICTIONARY_ITEM,
+      payload: response.data,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchDictionary = (sortColumn, sortDirection) => async dispatch => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/dictionaries`, {
+      params: {
+        _sort:
+          sortColumn && sortDirection
+            ? `${sortColumn}:${sortDirection.toUpperCase()}`
+            : 'keyword:ASC',
+      },
+    });
     dispatch({
       type: FETCH_DICTIONARY,
       payload: response.data,
@@ -26,7 +46,7 @@ export const addDictionary = data => async dispatch => {
   let galleryImages;
   try {
     if (!!data.image) {
-      image = await axiosAuthInstance({
+      image = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -37,7 +57,7 @@ export const addDictionary = data => async dispatch => {
     }
 
     if (!!data.gallery_images) {
-      galleryImages = await axiosAuthInstance({
+      galleryImages = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -47,7 +67,7 @@ export const addDictionary = data => async dispatch => {
       });
     }
     // return;
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'POST',
       url: `/dictionaries`,
       data: {
@@ -63,7 +83,7 @@ export const addDictionary = data => async dispatch => {
 
 export const deleteDictionary = id => async dispatch => {
   try {
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'DELETE',
       url: `/dictionaries/${id}`,
     });

@@ -10,7 +10,7 @@ const articlesReducer = (state = initialState, action) => {
     case FETCH_ARTICLES:
       return {
         ...state,
-        articles: [...action.payload],
+        articles: action.payload,
         article: null,
       };
     case FETCH_ARTICLE:

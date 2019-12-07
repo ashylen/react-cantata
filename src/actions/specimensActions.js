@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { axiosAuthInstance } from '../helpers/auth/interceptors';
+import { axiosAuthorized } from '../helpers/auth/interceptors';
 
 export const ADD_SPECIMENS_REQUEST = 'ADD_SPECIMENS_REQUEST';
 export const ADD_SPECIMENS_SUCCESS = 'ADD_SPECIMENS_SUCCESS';
@@ -36,7 +36,7 @@ export const addSpecimen = itemContent => async dispatch => {
   let file;
   try {
     if (!!itemContent.image) {
-      file = await axiosAuthInstance({
+      file = await axiosAuthorized({
         method: 'POST',
         url: `/upload`,
         headers: {
@@ -46,7 +46,7 @@ export const addSpecimen = itemContent => async dispatch => {
       });
     }
 
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'POST',
       url: `/specimen`,
       data: { ...itemContent, image: file && file.data },
@@ -59,7 +59,7 @@ export const addSpecimen = itemContent => async dispatch => {
 
 export const deleteSpecimen = id => async dispatch => {
   try {
-    const response = await axiosAuthInstance({
+    const response = await axiosAuthorized({
       method: 'DELETE',
       url: `/specimen/${id}`,
     });
