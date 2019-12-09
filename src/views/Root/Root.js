@@ -24,6 +24,7 @@ import ScrollTop from '../../hoc/ScrollTop';
 // TO DO:
 // button wylogowania
 // refractor
+// slider
 // Snackbary do akcji
 // przerobic wszystkie requesty na try catch i uzeby uzywaly axiosauth/nonauth
 // Ulepszyć paginacje artykułów?

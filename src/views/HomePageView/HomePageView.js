@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import { bindActionCreators } from 'redux';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
 
 // Utilities
 import styles from './HomePageView.module.scss';
@@ -59,6 +61,29 @@ class HomePageView extends Component {
     }
   };
 
+  settings = {
+    dots: false,
+    arrows: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    lazyLoad: true,
+    nextArrow: <button></button>,
+    prevArrow: <button></button>,
+
+    responsive: [
+      {
+        breakpoint: 768,
+        arrows: false,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   render() {
     const { specimens, user, isModalOpen, openSpecimensModal, closeSpecimensModal } = this.props;
 
@@ -83,32 +108,36 @@ class HomePageView extends Component {
               Poniżej przedstawione zostały poszczególne okazy, które udało się nam znaleźć.
             </SectionDescription>
 
-            {!!specimens
-              ? specimens.map(item => (
-                  <div className={styles.inner} key={item.id}>
-                    <div className={classNames(styles.description, { [styles.full]: !item.image })}>
-                      <TimelineHeader secondary title={item.family}>
-                        {item.subText}
-                      </TimelineHeader>
-                      <Box title={item.title} description={item.description} />
+            <Slider {...this.settings}>
+              {!!specimens
+                ? specimens.map(item => (
+                    <div className={styles.inner} key={item.id}>
+                      <div
+                        className={classNames(styles.description, { [styles.full]: !item.image })}
+                      >
+                        <TimelineHeader secondary title={item.family}>
+                          {item.subText}
+                        </TimelineHeader>
+                        <Box title={item.title} description={item.description} />
 
-                      {!!user && user.username === 'admin' && (
-                        <Button
-                          cssClass="absoluteTR"
-                          onClick={() => this.handleSpecimenDelete(item.id)}
-                        >
-                          Usuń
-                        </Button>
+                        {!!user && user.username === 'admin' && (
+                          <Button
+                            cssClass="absoluteTR"
+                            onClick={() => this.handleSpecimenDelete(item.id)}
+                          >
+                            Usuń
+                          </Button>
+                        )}
+                      </div>
+                      {item.image && (
+                        <div className={styles.image}>
+                          <img src={`${process.env.REACT_APP_API_URL}${item.image.url}`} />
+                        </div>
                       )}
                     </div>
-                    {item.image && (
-                      <div className={styles.image}>
-                        <img src={`${process.env.REACT_APP_API_URL}${item.image.url}`} />
-                      </div>
-                    )}
-                  </div>
-                ))
-              : null}
+                  ))
+                : null}
+            </Slider>
 
             {!!user && user.username === 'admin' && (
               <Button

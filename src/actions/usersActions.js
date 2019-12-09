@@ -5,6 +5,7 @@ import { history } from '../store';
 import { axiosAuthorized } from '../helpers/auth/interceptors';
 
 export const FETCH_USER = 'FETCH_USER';
+export const LOGOUT = 'LOGOUT';
 
 export const login = (identifier, password) => async dispatch => {
   try {
@@ -17,7 +18,17 @@ export const login = (identifier, password) => async dispatch => {
       type: FETCH_USER,
       payload: response.data,
     });
-    localStorage.setItem('token', response.data.jwt);
+    sessionStorage.setItem('token', response.data.jwt);
+    history.push('/');
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const logout = () => async dispatch => {
+  try {
+    dispatch({ type: LOGOUT });
+    sessionStorage.removeItem('token');
     history.push('/');
   } catch (error) {
     throw error;
@@ -25,7 +36,7 @@ export const login = (identifier, password) => async dispatch => {
 };
 
 export const fetchUserByToken = () => async dispatch => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
 
   if (!token) {
     return;
@@ -45,7 +56,7 @@ export const fetchUserByToken = () => async dispatch => {
 
 export const getAccessToken = () => dispatch => {
   return new Promise((resolve, reject) => {
-    let token = localStorage.getItem('token');
+    let token = sessionStorage.getItem('token');
     if (token) {
       // let tokenExpiresDate = jwt_decode(token).exp;
       // let currentDate = Math.round(new Date().getTime() / 1000);

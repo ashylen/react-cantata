@@ -133,4 +133,14 @@
     text-align: center;
     text-decoration: underline;
   }
+
+  .logoutButton {
+    text-align: center;
+    text-decoration: underline;
+    margin: 10px;
+
+    button {
+      color: #fff;
+    }
+  }
 }
