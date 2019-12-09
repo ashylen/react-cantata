@@ -8,6 +8,10 @@ import styles from './Header.module.scss';
 import logo from '../../../assets/images/logo.png';
 
 const Header = ({ isHomePage, siteTitle }) => {
+  const handleScrollToElement = element => {
+    document.getElementById(element).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   const HomePageHeader = (
     <header className={styles.homePageHeader}>
       <Nav isHomePage={isHomePage} />
@@ -25,7 +29,11 @@ const Header = ({ isHomePage, siteTitle }) => {
               się solidnej dawki geologicznej indoktrynacji to zapraszamy do wspólnego odkrywania
               tajemnic zaklętych w skałach! Młotki w dłoń!
             </p>
-            <button className={styles.callToAction} type="button">
+            <button
+              className={styles.callToAction}
+              onClick={() => handleScrollToElement('contact')}
+              type="button"
+            >
               Skontaktuj się z nami
             </button>
           </div>
