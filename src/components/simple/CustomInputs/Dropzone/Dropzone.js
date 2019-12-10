@@ -24,8 +24,10 @@ const DropzoneField = props => {
           type="button"
           style={{
             maxWidth: '500px',
+            textDecoration: 'none',
+            fontWeight: '500',
             fontSize:
-              getInputProps().ref.current && !!getInputProps().ref.current.value ? '7px' : '12px',
+              getInputProps().ref.current && !!getInputProps().ref.current.value ? '9px' : '12px',
           }}
         >
           {getInputProps().ref.current && getInputProps().ref.current.files.length > 0

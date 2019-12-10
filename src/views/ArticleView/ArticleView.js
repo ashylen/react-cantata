@@ -67,7 +67,8 @@ const ArticleView = props => {
           <div className={styles.articlesWrapper}>
             <SectionTitle textCustomize="gradient">{article && article.title}</SectionTitle>
             <div className={styles.text}>{article && checkForKeywords(article.content)}</div>
-
+            <br />
+            <br />
             <div className={styles.galleryWrapper}>
               {article &&
                 article.gallery_images.map(image => (
@@ -83,6 +84,8 @@ const ArticleView = props => {
                 ))}
             </div>
           </div>
+          <br />
+          <br />
           <br />
           <Link className={styles.absoluteLink} to={routes.articles}>
             <Button type="button">Powrót</Button>
