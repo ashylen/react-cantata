@@ -65,6 +65,7 @@ class AddDictionaryForm extends React.Component {
               placeholder=" "
               component={CustomInput}
               type="text"
+              normalize={value => value && value.toLowerCase()}
               validate={[isRequired, this.uniqueKeywordValidator]}
               label="Fraza"
             />

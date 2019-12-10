@@ -5,7 +5,6 @@ export const FETCH_ARTICLES = 'FETCH_ARTICLES';
 export const FETCH_ARTICLE = 'FETCH_ARTICLE';
 
 export const fetchArticles = (limit, page = 1) => async dispatch => {
-  console.log('ddd', limit);
   try {
     const responseCount = await axios.get(`${process.env.REACT_APP_API_URL}/articles/count`);
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/articles`, {
@@ -14,6 +13,7 @@ export const fetchArticles = (limit, page = 1) => async dispatch => {
         _sort: 'created_at:DESC',
       },
     });
+
     dispatch({
       type: FETCH_ARTICLES,
       payload: {

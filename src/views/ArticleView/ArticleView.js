@@ -21,7 +21,7 @@ import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
 
 const ArticleView = props => {
   const { article } = useSelector(state => ({ article: state.articles.article }));
-  const { dictionary } = useSelector(state => ({ dictionary: state.dictionary.dictionary }));
+  const { dictionary } = useSelector(state => ({ dictionary: state.dictionary.dictionary.data }));
   const [isFetching, setIsFetching] = useState(true);
   const dispatch = useDispatch();
   const params = useParams();
@@ -37,9 +37,11 @@ const ArticleView = props => {
   }, []);
 
   const checkForKeywords = text => {
+    let formattedText = text;
+
     if (dictionary && dictionary.length > 0) {
       const textWithDictionaryItems = dictionary.map(item => {
-        const result = reactStringReplace(text, item.keyword, (match, i) => (
+        formattedText = reactStringReplace(formattedText, item.keyword, (match, i) => (
           <Link
             key={i}
             className={styles.dictionaryLink}
@@ -50,11 +52,11 @@ const ArticleView = props => {
           </Link>
         ));
 
-        return result;
+        return formattedText;
       });
       return textWithDictionaryItems;
     } else {
-      return text;
+      return formattedText;
     }
   };
 

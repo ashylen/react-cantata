@@ -21,22 +21,27 @@ import AddTripsForm from '../../components/complex/AddTripsForm/AddTripsForm';
 import Modal from '../../components/complex/Modal/Modal';
 
 const TripsView = () => {
+  const dispatch = useDispatch();
+  const [isFetching, setIsFetching] = useState(true);
   const { isModalOpen } = useSelector(state => ({
     isModalOpen: state.modals.trips.isModalOpen,
   }));
-  const { trips } = useSelector(state => ({ trips: state.trips.trips }));
+  const { trips } = useSelector(state => ({ trips: state.trips.trips.data }));
+  const { tripsCount } = useSelector(state => ({
+    tripsCount: state.trips.trips.count,
+  }));
   const { user } = useSelector(state => ({ user: state.users.user }));
-  const [isFetching, setIsFetching] = useState(true);
-  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(fetchTrips());
+      await dispatch(fetchTrips(limit, page));
       setIsFetching(false);
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   const handleTripDelete = async id => {
     setIsFetching(true);
@@ -44,7 +49,7 @@ const TripsView = () => {
     if (window.confirm('Na pewno chcesz usunąć ten element?')) {
       try {
         await dispatch(deleteTrip(id));
-        await dispatch(fetchTrips());
+        await dispatch(fetchTrips(limit, page));
         setIsFetching(false);
       } catch (error) {
         throw new Error(error);
@@ -80,6 +85,10 @@ const TripsView = () => {
               <div className={styles.trip}>Brak elementów w tej sekcji</div>
             )}
           </div>
+          <br />
+          {trips && trips.length < tripsCount && (
+            <Button onClick={() => setPage(page + 1)}>Wczytaj więcej</Button>
+          )}
         </article>
         {!!user && user.username === 'admin' && (
           <Button

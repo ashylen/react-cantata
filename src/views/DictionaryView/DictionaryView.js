@@ -23,22 +23,27 @@ import Modal from '../../components/complex/Modal/Modal';
 import SectionDescription from '../../components/complex/SectionDescription/SectionDescription';
 
 const DictionaryView = () => {
+  const dispatch = useDispatch();
   const { isModalOpen } = useSelector(state => ({
     isModalOpen: state.modals.dictionary.isModalOpen,
   }));
-  const { dictionary } = useSelector(state => ({ dictionary: state.dictionary.dictionary }));
+  const { dictionary } = useSelector(state => ({ dictionary: state.dictionary.dictionary.data }));
+  const { dictionaryCount } = useSelector(state => ({
+    dictionaryCount: state.dictionary.dictionary.count,
+  }));
   const { user } = useSelector(state => ({ user: state.users.user }));
   const [isFetching, setIsFetching] = useState(true);
-  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(fetchDictionary());
+      await dispatch(fetchDictionary(null, null, limit, page));
       setIsFetching(false);
     };
 
     fetchData();
-  }, []);
+  }, [page]);
 
   const handleDictionaryDelete = async id => {
     setIsFetching(true);
@@ -46,7 +51,7 @@ const DictionaryView = () => {
     if (window.confirm('Na pewno chcesz usunąć ten element?')) {
       try {
         await dispatch(deleteDictionary(id));
-        await dispatch(fetchDictionary());
+        await dispatch(fetchDictionary(null, null, limit, page));
         setIsFetching(false);
       } catch (error) {
         throw new Error(error);
@@ -97,6 +102,9 @@ const DictionaryView = () => {
             )}
 
             <br />
+            {dictionary && dictionary.length < dictionaryCount && (
+              <Button onClick={() => setPage(page + 1)}>Wczytaj więcej</Button>
+            )}
           </article>
         </div>
         {!!user && user.username === 'admin' && (

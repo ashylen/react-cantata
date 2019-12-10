@@ -10,7 +10,7 @@ const tripsReducer = (state = initialState, action) => {
     case FETCH_TRIPS:
       return {
         ...state,
-        trips: [...action.payload],
+        trips: action.payload,
       };
     case FETCH_TRIP:
       return {

@@ -16,19 +16,25 @@ export const fetchDictionaryItem = id => async dispatch => {
   }
 };
 
-export const fetchDictionary = (sortColumn, sortDirection) => async dispatch => {
+export const fetchDictionary = (sortColumn, sortDirection, limit, page = 1) => async dispatch => {
   try {
+    const responseCount = await axios.get(`${process.env.REACT_APP_API_URL}/dictionaries/count`);
     const response = await axios.get(`${process.env.REACT_APP_API_URL}/dictionaries`, {
       params: {
         _sort:
           sortColumn && sortDirection
             ? `${sortColumn}:${sortDirection.toUpperCase()}`
             : 'keyword:ASC',
+        _limit: limit && limit * page,
       },
     });
+
     dispatch({
       type: FETCH_DICTIONARY,
-      payload: response.data,
+      payload: {
+        data: response.data,
+        count: responseCount.data,
+      },
     });
   } catch (error) {
     throw error;

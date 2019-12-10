@@ -22,6 +22,7 @@ import Modal from '../../components/complex/Modal/Modal';
 import Pagination from '../../components/complex/Pagination/Pagination';
 
 const ArticlesView = () => {
+  const dispatch = useDispatch();
   const { isModalOpen } = useSelector(state => ({
     isModalOpen: state.modals.articles.isModalOpen,
   }));
@@ -31,7 +32,6 @@ const ArticlesView = () => {
   }));
   const { user } = useSelector(state => ({ user: state.users.user }));
   const [isFetching, setIsFetching] = useState(true);
-  const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   const limit = 10;
 

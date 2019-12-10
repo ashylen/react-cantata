@@ -4,12 +4,21 @@ import { axiosAuthorized } from '../helpers/auth/interceptors';
 export const FETCH_TRIPS = 'FETCH_TRIPS';
 export const FETCH_TRIP = 'FETCH_TRIP';
 
-export const fetchTrips = () => async dispatch => {
+export const fetchTrips = (limit, page = 1) => async dispatch => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/trips`);
+    const responseCount = await axios.get(`${process.env.REACT_APP_API_URL}/trips/count`);
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/trips`, {
+      params: {
+        _limit: limit && limit * page,
+        _sort: 'created_at:DESC',
+      },
+    });
     dispatch({
       type: FETCH_TRIPS,
-      payload: response.data,
+      payload: {
+        data: response.data,
+        count: responseCount.data,
+      },
     });
   } catch (error) {
     console.error(error);
