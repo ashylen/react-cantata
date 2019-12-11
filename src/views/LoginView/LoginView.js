@@ -21,7 +21,7 @@ class LoginView extends Component {
     const { identifier, password } = values;
 
     try {
-      const response = await this.props.login(identifier, password);
+      await this.props.login(identifier, password);
     } catch (error) {
       if (error.response.data.message === 'Identifier or password invalid.') {
         throw new SubmissionError({ password: 'Nazwa użytkownika lub hasło są nieprawidłowe' });

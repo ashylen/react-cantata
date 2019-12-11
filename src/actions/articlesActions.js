@@ -38,7 +38,7 @@ export const fetchArticle = id => async dispatch => {
   }
 };
 
-export const addArticle = data => async dispatch => {
+export const addArticle = data => async () => {
   let formDataImage = new FormData();
   let formDataGalleryImages = new FormData();
   data.image && formDataImage.append('files', data.image[0]);
@@ -69,8 +69,8 @@ export const addArticle = data => async dispatch => {
         data: formDataGalleryImages,
       });
     }
-    // return;
-    const response = await axiosAuthorized({
+
+    await axiosAuthorized({
       method: 'POST',
       url: `/articles`,
       data: {
@@ -81,13 +81,12 @@ export const addArticle = data => async dispatch => {
     });
   } catch (error) {
     console.error(error);
-    // dispatch({ type: ADD_articleS_FAILURE });
   }
 };
 
-export const deleteArticle = id => async dispatch => {
+export const deleteArticle = id => async () => {
   try {
-    const response = await axiosAuthorized({
+    await axiosAuthorized({
       method: 'DELETE',
       url: `/articles/${id}`,
     });

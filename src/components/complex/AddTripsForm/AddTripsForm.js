@@ -10,7 +10,6 @@ import classNames from 'classnames';
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
-import InputFile from '../../simple/CustomInputs/InputFile';
 import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 
 // Utilities
@@ -20,12 +19,10 @@ import {
   fetchTrips as fetchTripsAction,
 } from '../../../actions/tripsActions';
 import { required as isRequired } from '../../../utilities/Validators/required';
-import { maxLength } from '../../../utilities/Validators/maxLength';
-import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
 class AddTripsForm extends React.Component {
   handleSubmit = async formData => {
-    const { addTrip, closeModalFn, idCurrentItem, fetchTrips } = this.props;
+    const { addTrip, closeModalFn, fetchTrips } = this.props;
 
     try {
       await addTrip(formData);
@@ -38,7 +35,7 @@ class AddTripsForm extends React.Component {
   };
 
   render() {
-    const { handleSubmit, reset, pristine, submitting } = this.props;
+    const { handleSubmit, submitting } = this.props;
 
     return (
       <React.Fragment>
@@ -80,11 +77,6 @@ class AddTripsForm extends React.Component {
             <Field name="gallery_images" label="Galeria" multiple={true} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>
-              {/* {pristine ? null : (
-                <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
-                  Wyczyść
-                </Button>
-              )} */}
               <Button type="submit" disabled={submitting}>
                 Dodaj
               </Button>
@@ -96,14 +88,9 @@ class AddTripsForm extends React.Component {
   }
 }
 
-AddTripsForm.defaultProps = {
-  idCurrentItem: null,
-};
-
 AddTripsForm.propTypes = {
   addTrip: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
-  idCurrentItem: PropTypes.number,
   fetchTrips: PropTypes.func.isRequired,
 };
 

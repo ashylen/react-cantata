@@ -41,7 +41,7 @@ export const fetchDictionary = (sortColumn, sortDirection, limit, page = 1) => a
   }
 };
 
-export const addDictionary = data => async dispatch => {
+export const addDictionary = data => async () => {
   let formDataImage = new FormData();
   let formDataGalleryImages = new FormData();
   data.image && formDataImage.append('files', data.image[0]);
@@ -72,8 +72,8 @@ export const addDictionary = data => async dispatch => {
         data: formDataGalleryImages,
       });
     }
-    // return;
-    const response = await axiosAuthorized({
+
+    await axiosAuthorized({
       method: 'POST',
       url: `/dictionaries`,
       data: {
@@ -87,9 +87,9 @@ export const addDictionary = data => async dispatch => {
   }
 };
 
-export const deleteDictionary = id => async dispatch => {
+export const deleteDictionary = id => async () => {
   try {
-    const response = await axiosAuthorized({
+    await axiosAuthorized({
       method: 'DELETE',
       url: `/dictionaries/${id}`,
     });

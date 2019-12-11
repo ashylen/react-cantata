@@ -41,7 +41,7 @@ const TripsView = () => {
     };
 
     fetchData();
-  }, [page]);
+  }, [page, dispatch]);
 
   const handleTripDelete = async id => {
     setIsFetching(true);

@@ -10,8 +10,6 @@ import classNames from 'classnames';
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
-import InputFile from '../../simple/CustomInputs/InputFile';
-import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 
 // Utilities
 import styles from './AddDictionaryForm.module.scss';
@@ -20,12 +18,10 @@ import {
   fetchDictionary as fetchDictionaryAction,
 } from '../../../actions/dictionaryActions';
 import { required as isRequired } from '../../../utilities/Validators/required';
-import { maxLength } from '../../../utilities/Validators/maxLength';
-import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
 class AddDictionaryForm extends React.Component {
   handleSubmit = async formData => {
-    const { addDictionary, closeModalFn, idCurrentItem, fetchDictionary } = this.props;
+    const { addDictionary, closeModalFn, fetchDictionary } = this.props;
 
     try {
       await addDictionary(formData);
@@ -48,7 +44,7 @@ class AddDictionaryForm extends React.Component {
   };
 
   render() {
-    const { handleSubmit, reset, pristine, submitting, dictionary } = this.props;
+    const { handleSubmit, submitting } = this.props;
 
     return (
       <React.Fragment>
@@ -107,14 +103,9 @@ class AddDictionaryForm extends React.Component {
   }
 }
 
-AddDictionaryForm.defaultProps = {
-  idCurrentItem: null,
-};
-
 AddDictionaryForm.propTypes = {
   addDictionary: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
-  idCurrentItem: PropTypes.number,
   fetchDictionary: PropTypes.func.isRequired,
 };
 

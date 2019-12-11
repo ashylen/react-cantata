@@ -34,7 +34,7 @@ const ArticleView = props => {
     };
 
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   const checkForKeywords = text => {
     let formattedText = text;
@@ -75,12 +75,13 @@ const ArticleView = props => {
               {article &&
                 article.gallery_images.map(image => (
                   <picture className={styles.image}>
+                    {console.log(image)}
                     <a
                       href={`${process.env.REACT_APP_API_URL}${image.url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={`${process.env.REACT_APP_API_URL}${image.url}`} />
+                      <img src={`${process.env.REACT_APP_API_URL}${image.url}`} alt={image.name} />
                     </a>
                   </picture>
                 ))}

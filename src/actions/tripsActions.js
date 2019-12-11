@@ -68,8 +68,8 @@ export const addTrip = data => async dispatch => {
         data: formDataGalleryImages,
       });
     }
-    // return;
-    const response = await axiosAuthorized({
+
+    await axiosAuthorized({
       method: 'POST',
       url: `/trips`,
       data: {
@@ -80,13 +80,12 @@ export const addTrip = data => async dispatch => {
     });
   } catch (error) {
     console.error(error);
-    // dispatch({ type: ADD_articleS_FAILURE });
   }
 };
 
-export const deleteTrip = id => async dispatch => {
+export const deleteTrip = id => async () => {
   try {
-    const response = await axiosAuthorized({
+    await axiosAuthorized({
       method: 'DELETE',
       url: `/trips/${id}`,
     });

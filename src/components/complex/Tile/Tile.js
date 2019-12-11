@@ -13,7 +13,7 @@ const Tile = ({ data, routeName }) => {
     <article className={styles.article}>
       {data.image && (
         <div className={styles.image}>
-          <img src={`${process.env.REACT_APP_API_URL}${data.image.url}`} />
+          <img src={`${process.env.REACT_APP_API_URL}${data.image.url}`} alt={data.image.name} />
         </div>
       )}
       <div className={styles.bottom}>

@@ -19,7 +19,6 @@ import Button from '../../components/simple/Button/Button';
 import MainTemplate from '../../templates/MainTemplate';
 import AddArticlesForm from '../../components/complex/AddArticlesForm/AddArticlesForm';
 import Modal from '../../components/complex/Modal/Modal';
-import Pagination from '../../components/complex/Pagination/Pagination';
 
 const ArticlesView = () => {
   const dispatch = useDispatch();
@@ -43,7 +42,7 @@ const ArticlesView = () => {
     };
 
     fetchData();
-  }, [page]);
+  }, [page, dispatch]);
 
   const handleArticleDelete = async id => {
     setIsFetching(true);

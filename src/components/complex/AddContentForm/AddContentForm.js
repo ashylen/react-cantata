@@ -16,23 +16,13 @@ import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 import styles from './AddContentForm.module.scss';
 import {
   addSpecimen as addSpecimenAction,
-  editSpecimen as editSpecimenAction,
   fetchSpecimens as fetchSpecimensAction,
 } from '../../../actions/specimensActions';
 import { required as isRequired } from '../../../utilities/Validators/required';
-import { maxLength } from '../../../utilities/Validators/maxLength';
-import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
 class AddContentForm extends React.Component {
   handleSubmit = async formData => {
-    const {
-      addSpecimen,
-      editSpecimen,
-      closeModalFn,
-      idCurrentItem,
-      isEditMode,
-      fetchSpecimens,
-    } = this.props;
+    const { addSpecimen, closeModalFn, fetchSpecimens } = this.props;
 
     try {
       await addSpecimen(formData);
@@ -45,7 +35,7 @@ class AddContentForm extends React.Component {
   };
 
   render() {
-    const { isEditMode, handleSubmit, reset, pristine, submitting } = this.props;
+    const { handleSubmit, submitting } = this.props;
 
     return (
       <React.Fragment>
@@ -85,11 +75,6 @@ class AddContentForm extends React.Component {
             <Field name="image" label="Obraz główny" multiple={false} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>
-              {/* {pristine ? null : (
-                <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
-                  Wyczyść
-                </Button>
-              )} */}
               <Button type="submit" disabled={submitting}>
                 Dodaj
               </Button>
@@ -101,34 +86,20 @@ class AddContentForm extends React.Component {
   }
 }
 
-AddContentForm.defaultProps = {
-  idCurrentItem: null,
-};
-
 AddContentForm.propTypes = {
   addSpecimen: PropTypes.func.isRequired,
-  editSpecimen: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
-  isEditMode: PropTypes.bool.isRequired,
-  idCurrentItem: PropTypes.number,
   fetchSpecimens: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => {
-  const { isEditMode, idCurrentItem } = state.modals.specimens;
-  const { editItemData } = state.specimens;
-  return { isEditMode, idCurrentItem, editItemData };
 };
 
 const mapDispatchToProps = dispatch => ({
   fetchSpecimens: () => dispatch(fetchSpecimensAction()),
   addSpecimen: itemContent => dispatch(addSpecimenAction(itemContent)),
   reset: bindActionCreators(resetReduxForm, dispatch),
-  editSpecimen: (itemId, itemContent) => dispatch(editSpecimenAction(itemId, itemContent)),
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(
   reduxForm({

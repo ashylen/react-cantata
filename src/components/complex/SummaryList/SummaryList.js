@@ -19,7 +19,6 @@ const SummaryList = ({ data }) => {
         <TimelineHeader title="Link">{href}</TimelineHeader>
         <TimelineHeader title="Date">{date}</TimelineHeader>
         <TimelineHeader title="Additional text">{subText}</TimelineHeader>
-        <TimelineHeader title="Youtube URL">{youTubeUrl}</TimelineHeader>
         <TimelineHeader title="Text">{text}</TimelineHeader>
       </div>
     </React.Fragment>
@@ -28,13 +27,12 @@ const SummaryList = ({ data }) => {
 
 SummaryList.defaultProps = {
   data: {
-    header: "",
-    text: "",
-    href: "",
-    date: "",
-    youTubeUrl: "",
-    subText: "",
-  }
+    header: '',
+    text: '',
+    href: '',
+    date: '',
+    subText: '',
+  },
 };
 
 SummaryList.propTypes = {
@@ -43,7 +41,6 @@ SummaryList.propTypes = {
     text: PropTypes.string,
     href: PropTypes.string,
     date: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.string]),
-    youTubeUrl: PropTypes.string,
     subText: PropTypes.string,
   }),
 };

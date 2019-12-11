@@ -34,7 +34,12 @@ const Footer = ({ siteTitle }) => {
           Witryna stworzona przez:
           <h3 className={styles.heading}>Polskie Towarzystwo Informatyków i Grafików</h3>
           <div>
-            <a className={styles.moreInfo} href="https://ptig.pl" target="_blank">
+            <a
+              className={styles.moreInfo}
+              href="https://ptig.pl"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
               Dowiedz się więcej
             </a>
           </div>
@@ -53,22 +58,26 @@ const Footer = ({ siteTitle }) => {
           </div>
           <ul className={styles.brands}>
             <li className={styles.brand}>
-              <a href="https://www.facebook.com/ptigpl/" target="_blank">
+              <a href="https://www.facebook.com/ptigpl/" rel="noopener noreferrer" target="_blank">
                 <img src={facebook} alt="PtigFacebook" />
               </a>
             </li>
             <li className={styles.brand}>
-              <a href="https://www.youtube.com/channel/UC2NDhkD7CAMXYtFSeTr5BVg" target="_blank">
+              <a
+                href="https://www.youtube.com/channel/UC2NDhkD7CAMXYtFSeTr5BVg"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
                 <img src={yt} alt="PtigFacebook" />
               </a>
             </li>
             <li className={styles.brand}>
-              <a href="https://g.page/ptigbc/review" target="_blank">
+              <a href="https://g.page/ptigbc/review" rel="noopener noreferrer" target="_blank">
                 <img src={google} alt="PtigGoogle" />
               </a>
             </li>
             <li className={styles.brand}>
-              <a href="http://gaming.ptig.pl" target="_blank">
+              <a href="http://gaming.ptig.pl" rel="noopener noreferrer" target="_blank">
                 <img src={gamepad} alt="PtigGaming" />
               </a>
             </li>
@@ -78,7 +87,7 @@ const Footer = ({ siteTitle }) => {
       <div className={styles.copy}>
         <span>&copy; 2019 Polskie Towarzystwo Informatyków i Grafików</span>
         <p className={styles.logo}>
-          <a href="https://ptig.pl" target="_blank">
+          <a href="https://ptig.pl" target="_blank" rel="noopener noreferrer">
             <img src={logoPtig} alt="PTIG-LOGO" />
           </a>
         </p>

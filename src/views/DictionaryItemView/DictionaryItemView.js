@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import { routes } from '../../routes';
 import { fetchDictionaryItem } from '../../actions/dictionaryActions';
 import styles from './DictionaryItemView.module.scss';
-import { deleteDictionary } from '../../actions/dictionaryActions';
 
 // Components
 import SectionTitle from '../../components/complex/SectionTitle/SectionTitle';
@@ -21,6 +20,7 @@ const DictionaryItemView = () => {
   const { dictionaryItem } = useSelector(state => ({
     dictionaryItem: state.dictionary.dictionaryItem,
   }));
+
   const [isFetching, setIsFetching] = useState(true);
   const dispatch = useDispatch();
   const params = useParams();
@@ -32,7 +32,7 @@ const DictionaryItemView = () => {
     };
 
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <MainTemplate>
@@ -44,7 +44,6 @@ const DictionaryItemView = () => {
               <SectionTitle textCustomize="gradient">{dictionaryItem.keyword}</SectionTitle>
               <p className={styles.text}>{dictionaryItem.description}</p>
             </div>
-
             <br />
             <Link className={styles.absoluteLink} to={routes.dictionary}>
               <Button type="button">Powrót</Button>

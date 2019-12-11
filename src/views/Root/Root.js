@@ -2,7 +2,7 @@ import React from 'react';
 
 // Modules
 import { Provider } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import { ConnectedRouter } from 'connected-react-router';
 import 'typeface-montserrat';
 

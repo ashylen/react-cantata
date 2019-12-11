@@ -10,26 +10,16 @@ import classNames from 'classnames';
 // Components
 import Button from '../../simple/Button/Button';
 import CustomInput from '../../simple/CustomInputs/CustomInput';
-import InputFile from '../../simple/CustomInputs/InputFile';
 import Dropzone from '../../simple/CustomInputs/Dropzone/Dropzone';
 
 // Utilities
 import styles from './AddArticlesForm.module.scss';
 import * as articlesActions from '../../../actions/articlesActions';
 import { required as isRequired } from '../../../utilities/Validators/required';
-import { maxLength } from '../../../utilities/Validators/maxLength';
-import { isYouTubeUrl } from '../../../utilities/Validators/isYouTubeUrl';
 
 class AddArticlesForm extends React.Component {
   handleSubmit = async formData => {
-    const {
-      addArticle,
-      closeModalFn,
-      idCurrentItem,
-      fetchArticles,
-      articlesLimit,
-      articlesPage,
-    } = this.props;
+    const { addArticle, closeModalFn, fetchArticles, articlesLimit, articlesPage } = this.props;
 
     try {
       await addArticle(formData);
@@ -42,7 +32,7 @@ class AddArticlesForm extends React.Component {
   };
 
   render() {
-    const { handleSubmit, reset, pristine, submitting } = this.props;
+    const { handleSubmit, submitting } = this.props;
 
     return (
       <React.Fragment>
@@ -84,11 +74,6 @@ class AddArticlesForm extends React.Component {
             <Field name="gallery_images" label="Galeria" multiple={true} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>
-              {/* {pristine ? null : (
-                <Button cssClass="" type="button" disabled={pristine} onClick={reset}>
-                  Wyczyść
-                </Button>
-              )} */}
               <Button type="submit" disabled={submitting}>
                 Dodaj
               </Button>
@@ -100,14 +85,9 @@ class AddArticlesForm extends React.Component {
   }
 }
 
-AddArticlesForm.defaultProps = {
-  idCurrentItem: null,
-};
-
 AddArticlesForm.propTypes = {
   addArticle: PropTypes.func.isRequired,
   closeModalFn: PropTypes.func.isRequired,
-  idCurrentItem: PropTypes.number,
   fetchArticles: PropTypes.func.isRequired,
 };
 

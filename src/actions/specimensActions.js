@@ -46,7 +46,7 @@ export const addSpecimen = itemContent => async dispatch => {
       });
     }
 
-    const response = await axiosAuthorized({
+    await axiosAuthorized({
       method: 'POST',
       url: `/specimen`,
       data: { ...itemContent, image: file && file.data },
@@ -59,7 +59,7 @@ export const addSpecimen = itemContent => async dispatch => {
 
 export const deleteSpecimen = id => async dispatch => {
   try {
-    const response = await axiosAuthorized({
+    await axiosAuthorized({
       method: 'DELETE',
       url: `/specimen/${id}`,
     });

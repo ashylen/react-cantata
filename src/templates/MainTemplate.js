@@ -14,7 +14,7 @@ const MainTemplate = ({ children, isHomePage }) => {
 
   useEffect(() => {
     dispatch(fetchUserByToken());
-  }, []);
+  }, [dispatch]);
 
   return (
     <React.Fragment>

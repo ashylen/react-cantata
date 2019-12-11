@@ -131,7 +131,10 @@ class HomePageView extends Component {
                       </div>
                       {item.image && (
                         <div className={styles.image}>
-                          <img src={`${process.env.REACT_APP_API_URL}${item.image.url}`} />
+                          <img
+                            src={`${process.env.REACT_APP_API_URL}${item.image.url}`}
+                            alt={item.image.name}
+                          />
                         </div>
                       )}
                     </div>

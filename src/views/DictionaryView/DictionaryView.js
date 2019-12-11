@@ -43,7 +43,7 @@ const DictionaryView = () => {
     };
 
     fetchData();
-  }, [page]);
+  }, [page, dispatch]);
 
   const handleDictionaryDelete = async id => {
     setIsFetching(true);
