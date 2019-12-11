@@ -12,7 +12,7 @@ export const fetchDictionaryItem = id => async dispatch => {
       payload: response.data,
     });
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 
@@ -37,7 +37,7 @@ export const fetchDictionary = (sortColumn, sortDirection, limit, page = 1) => a
       },
     });
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 
@@ -83,7 +83,7 @@ export const addDictionary = data => async () => {
       },
     });
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };
 
@@ -94,6 +94,6 @@ export const deleteDictionary = id => async () => {
       url: `/dictionaries/${id}`,
     });
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 };

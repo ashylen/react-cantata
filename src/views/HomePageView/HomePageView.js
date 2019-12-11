@@ -40,7 +40,7 @@ class HomePageView extends Component {
       await fetchSpecimens();
       this.setState({ isFetching: false });
     } catch (error) {
-      throw new Error(error);
+      console.error(error);
     }
   }
 

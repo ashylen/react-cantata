@@ -21,7 +21,7 @@ export const login = (identifier, password) => async dispatch => {
     sessionStorage.setItem('token', response.data.jwt);
     history.push('/');
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 
@@ -31,7 +31,7 @@ export const logout = () => async dispatch => {
     sessionStorage.removeItem('token');
     history.push('/');
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 
@@ -50,7 +50,7 @@ export const fetchUserByToken = () => async dispatch => {
 
     dispatch({ type: FETCH_USER, payload: response.data });
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 
