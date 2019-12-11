@@ -21,7 +21,7 @@ export const fetchTrips = (limit, page = 1) => async dispatch => {
       },
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -33,7 +33,7 @@ export const fetchTrip = id => async dispatch => {
       payload: response.data,
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -79,7 +79,7 @@ export const addTrip = data => async dispatch => {
       },
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -90,6 +90,6 @@ export const deleteTrip = id => async () => {
       url: `/trips/${id}`,
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };

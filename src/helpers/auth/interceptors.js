@@ -38,7 +38,7 @@ axiosAuthorized.interceptors.response.use(
 
       if (error.response.status === 400) {
         if (error.response.data.message) {
-          console.error(error);
+          throw error;
         }
 
         return Promise.reject(null);

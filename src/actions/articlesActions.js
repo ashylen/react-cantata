@@ -22,7 +22,7 @@ export const fetchArticles = (limit, page = 1) => async dispatch => {
       },
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -34,7 +34,7 @@ export const fetchArticle = id => async dispatch => {
       payload: response.data,
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -80,7 +80,7 @@ export const addArticle = data => async () => {
       },
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -91,6 +91,6 @@ export const deleteArticle = id => async () => {
       url: `/articles/${id}`,
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };

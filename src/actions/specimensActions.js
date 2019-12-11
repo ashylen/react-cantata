@@ -23,8 +23,7 @@ export const fetchSpecimens = () => async dispatch => {
       payload: response.data,
     });
   } catch (error) {
-    console.error(error);
-    dispatch({ type: FETCH_SPECIMENS_FAILURE });
+    throw error;
   }
 };
 
@@ -52,7 +51,7 @@ export const addSpecimen = itemContent => async dispatch => {
       data: { ...itemContent, image: file && file.data },
     });
   } catch (error) {
-    console.error(error);
+    throw error;
     dispatch({ type: ADD_SPECIMENS_FAILURE });
   }
 };
@@ -64,7 +63,7 @@ export const deleteSpecimen = id => async dispatch => {
       url: `/specimen/${id}`,
     });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -85,7 +84,6 @@ export const editSpecimen = (itemId, itemContent) => dispatch => {
       });
     })
     .catch(err => {
-      console.error(err);
-      dispatch({ type: EDIT_SPECIMENS_FAILURE });
+      throw error;
     });
 };

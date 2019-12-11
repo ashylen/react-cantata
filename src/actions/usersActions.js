@@ -50,7 +50,7 @@ export const fetchUserByToken = () => async dispatch => {
 
     dispatch({ type: FETCH_USER, payload: response.data });
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
