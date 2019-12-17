@@ -12,7 +12,8 @@ export const history = createBrowserHistory();
 const initialState = {};
 const middleware = [thunk, routerMiddleware(history)];
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+// const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = compose;
 
 const composedEnhancers = composeEnhancers(applyMiddleware(...middleware));
 const store = createStore(rootReducer(history), initialState, composedEnhancers);
