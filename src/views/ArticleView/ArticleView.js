@@ -54,7 +54,7 @@ const ArticleView = props => {
 
         return formattedText;
       });
-      return textWithDictionaryItems;
+      return formattedText;
     } else {
       return formattedText;
     }
