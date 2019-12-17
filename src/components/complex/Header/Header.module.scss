@@ -84,11 +84,12 @@
       top: auto;
       transform: none;
       animation: fadeIn 1s both;
+      margin-top: 80px;
     }
 
     img {
       @media (max-width: $mobile-sm) {
-        max-width: 150px;
+        max-width: 200px;
       }
     }
   }
@@ -109,7 +110,7 @@
       position: relative;
       height: auto;
       width: auto;
-      margin-top: 30px;
+      margin-top: 100px;
       animation: slideInBTT 1s both;
     }
 

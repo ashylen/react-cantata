@@ -11,9 +11,22 @@ const DropzoneField = props => {
     multiple,
     label,
   } = props;
-  const { getRootProps, getInputProps } = useDropzone({
+  const { acceptedFiles, rejectedFiles, getRootProps, getInputProps } = useDropzone({
+    accept: 'image/jpeg, image/png',
     onDrop: files => onChange(files),
   });
+
+  const acceptedFilesItems = acceptedFiles.map(file => (
+    <li key={file.path}>
+      {file.path}
+    </li>
+  ));
+
+  const rejectedFilesItems = rejectedFiles.map(file => (
+    <li key={file.path}>
+      {file.path}
+    </li>
+  ));
 
   return (
     <div className={styles.dropzoneWrapper}>
@@ -31,14 +44,20 @@ const DropzoneField = props => {
           }}
         >
           {getInputProps().ref.current && getInputProps().ref.current.files.length > 0
-            ? Array.from(getInputProps().ref.current.files).map(file => (
-                <>
-                  {file.name}
-                  <br />
-                </>
-              ))
-            : 'Kliknij tutaj, żeby dodać pliki'}
-          {console.log(getInputProps())}
+            ? (
+              <>
+                <aside>
+                  <h4>Zaakceptowane pliki:</h4>
+                  <ul>
+                    {acceptedFilesItems}
+                  </ul>
+                  <h4>Odrzucone pliki:</h4>
+                  <ul>
+                    {rejectedFilesItems}
+                  </ul>
+                </aside>
+              </>
+            ) : 'Kliknij tutaj, żeby dodać pliki'}
         </Button>
       </div>
     </div>

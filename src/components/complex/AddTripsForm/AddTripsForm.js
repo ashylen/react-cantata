@@ -74,6 +74,7 @@ class AddTripsForm extends React.Component {
             />
             <br />
             <Field name="image" label="Obraz główny" multiple={false} component={Dropzone} />
+            <br/>
             <Field name="gallery_images" label="Galeria" multiple={true} component={Dropzone} />
             <br />
             <div className={styles.modalNavigation}>

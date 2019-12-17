@@ -111,38 +111,38 @@ class HomePageView extends Component {
             <Slider {...this.settings}>
               {!!specimens
                 ? specimens.map(item => (
-                    <div className={styles.inner} key={item.id}>
-                      <div
-                        className={classNames(styles.description, { [styles.full]: !item.image })}
-                      >
-                        <TimelineHeader secondary title={item.family}>
-                          {item.subText}
-                        </TimelineHeader>
-                        <Box title={item.title} description={item.description} />
+                  <div className={styles.inner} key={item.id}>
+                    <div
+                      className={classNames(styles.description, { [styles.full]: !item.image })}
+                    >
+                      <TimelineHeader secondary title={item.family}>
+                        {item.subText}
+                      </TimelineHeader>
+                      <Box title={item.title} description={item.description} />
 
-                        {!!user && user.username === 'admin' && (
-                          <Button
-                            cssClass="absoluteTR"
-                            onClick={() => this.handleSpecimenDelete(item.id)}
-                          >
-                            Usuń
+                      {!!user && user.role && user.role.name === 'Administrator' && (
+                        <Button
+                          cssClass="absoluteTR"
+                          onClick={() => this.handleSpecimenDelete(item.id)}
+                        >
+                          Usuń
                           </Button>
-                        )}
-                      </div>
-                      {item.image && (
-                        <div className={styles.image}>
-                          <img
-                            src={`${process.env.REACT_APP_API_URL}${item.image.url}`}
-                            alt={item.image.name}
-                          />
-                        </div>
                       )}
                     </div>
-                  ))
+                    {item.image && (
+                      <div className={styles.image}>
+                        <img
+                          src={`${process.env.REACT_APP_API_URL}${item.image.url}`}
+                          alt={item.image.name}
+                        />
+                      </div>
+                    )}
+                  </div>
+                ))
                 : null}
             </Slider>
 
-            {!!user && user.username === 'admin' && (
+            {!!user && user.role && user.role.name === 'Administrator' && (
               <Button
                 cssClass="buttonFixed"
                 onClick={() => {

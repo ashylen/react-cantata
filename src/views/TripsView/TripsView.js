@@ -69,7 +69,7 @@ const TripsView = () => {
             {!!trips && trips.length > 0 ? (
               trips.map(trip => (
                 <div className={styles.trip}>
-                  {!!user && user.username === 'admin' && (
+                  {!!user && user.role && user.role.name === 'Administrator' && (
                     <Button
                       type="button"
                       cssClass="absoluteTRLight"
@@ -82,15 +82,15 @@ const TripsView = () => {
                 </div>
               ))
             ) : (
-              <div className={styles.trip}>Brak elementów w tej sekcji</div>
-            )}
+                <div className={styles.trip}>Brak elementów w tej sekcji</div>
+              )}
           </div>
           <br />
           {trips && trips.length < tripsCount && (
             <Button onClick={() => setPage(page + 1)}>Wczytaj więcej</Button>
           )}
         </article>
-        {!!user && user.username === 'admin' && (
+        {!!user && user.role && user.role.name === 'Administrator' && (
           <Button
             cssClass="buttonFixed"
             onClick={() => {
