@@ -86,7 +86,7 @@ const DictionaryView = () => {
                     </div>
                   )}
 
-                  {!!user && user.role && user.role.name === 'Administrator' && (
+                  {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
                     <Button
                       type="button"
                       cssClass="absoluteTRLight"
@@ -107,7 +107,7 @@ const DictionaryView = () => {
             )}
           </article>
         </div>
-        {!!user && user.role && user.role.name === 'Administrator' && (
+        {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
           <Button
             cssClass="buttonFixed"
             onClick={() => {

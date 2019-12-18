@@ -120,7 +120,7 @@ class HomePageView extends Component {
                       </TimelineHeader>
                       <Box title={item.title} description={item.description} />
 
-                      {!!user && user.role && user.role.name === 'Administrator' && (
+                      {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
                         <Button
                           cssClass="absoluteTR"
                           onClick={() => this.handleSpecimenDelete(item.id)}
@@ -142,7 +142,7 @@ class HomePageView extends Component {
                 : null}
             </Slider>
 
-            {!!user && user.role && user.role.name === 'Administrator' && (
+            {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
               <Button
                 cssClass="buttonFixed"
                 onClick={() => {

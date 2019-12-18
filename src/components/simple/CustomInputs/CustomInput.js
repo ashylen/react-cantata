@@ -9,7 +9,6 @@ const CustomInput = props => {
     label,
     type,
     placeholder,
-    maxLength,
     meta: { touched, error },
     tag: Tag,
   } = props;
@@ -18,7 +17,6 @@ const CustomInput = props => {
   return (
     <Input
       tag={TagName}
-      maxLength={maxLength}
       label={label}
       placeholder={placeholder}
       type={type}

@@ -4,7 +4,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Input.module.scss';
 
-const Input = ({ tag: Tag, name, label, maxLength, error, placeholder, ...props }) => {
+const Input = ({ tag: Tag, name, label, error, placeholder, ...props }) => {
   const formItemClass = error ? styles.formItemError : styles.formItem;
   return (
     <div className={formItemClass}>
@@ -14,7 +14,6 @@ const Input = ({ tag: Tag, name, label, maxLength, error, placeholder, ...props 
         name={name}
         id={name}
         autoComplete="off"
-        maxLength={maxLength}
         placeholder={placeholder}
         {...props}
       />
@@ -29,7 +28,6 @@ const Input = ({ tag: Tag, name, label, maxLength, error, placeholder, ...props 
 
 Input.defaultProps = {
   tag: '',
-  maxLength: '200',
   error: false,
   placeholder: ' ',
 };
@@ -39,7 +37,6 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  maxLength: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.oneOfType([PropTypes.bool, PropTypes.shape({ error: PropTypes.string })]),
 };
 

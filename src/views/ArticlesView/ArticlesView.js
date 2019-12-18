@@ -70,7 +70,7 @@ const ArticlesView = () => {
             {!!articles && articles.length > 0 ? (
               articles.map(article => (
                 <div className={styles.article}>
-                   {!!user && user.role && user.role.name === 'Administrator' && (
+                   {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
                     <Button
                       type="button"
                       cssClass="absoluteTRLight"
@@ -91,7 +91,7 @@ const ArticlesView = () => {
             <Button onClick={() => setPage(page + 1)}>Wczytaj więcej</Button>
           )}
         </article>
-        {!!user && user.role && user.role.name === 'Administrator' && (
+        {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
           <Button
             cssClass="buttonFixed"
             onClick={() => {

@@ -95,7 +95,7 @@ const Footer = ({ siteTitle }) => {
       <div className={styles.loginButton}>
         <Link to={routes.login}>Admin</Link>
       </div>
-      {!!user && user.role && user.role.name === 'Administrator' && (
+      {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated') && (
         <div className={styles.logoutButton}>
           <Button onClick={() => handleLogout()}>Wyloguj</Button>
         </div>
