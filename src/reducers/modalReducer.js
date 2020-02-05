@@ -99,7 +99,6 @@ const modalReducer = (state = initialState, action) => {
         },
       };
     case OPEN_DICTIONARY_MODAL:
-      console.log(action);
       return {
         ...state,
         dictionary: {

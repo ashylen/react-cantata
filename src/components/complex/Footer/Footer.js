@@ -10,11 +10,12 @@ import { routes } from '../../../routes';
 import styles from './Footer.module.scss';
 import { logout } from '../../../actions/usersActions';
 
-import gamepad from '../../../assets/images/gamepad.svg';
 import logoPtig from '../../../assets/images/logo-ptig.png';
 import facebook from '../../../assets/images/facebook.svg';
 import yt from '../../../assets/images/yt.svg';
 import google from '../../../assets/images/google.svg';
+import linkedin from '../../../assets/images/linkedin.svg';
+import ig from '../../../assets/images/ig.svg';
 
 // Components
 import Button from '../../simple/Button/Button';
@@ -40,7 +41,7 @@ const Footer = ({ siteTitle }) => {
               rel="noopener noreferrer"
               target="_blank"
             >
-              Dowiedz się więcej
+              DOWIEDZ SIĘ WIĘCEJ
             </a>
           </div>
         </section>
@@ -49,11 +50,11 @@ const Footer = ({ siteTitle }) => {
           <div>
             <p>Telefon</p>
             <p>
-              <a href="tel:+48730369902">+48 730 369 902</a>
+              <a href="tel:+48736839403">+48 736 839 403</a>
             </p>
             <p>Email</p>
             <p>
-              <a href="mailto:ptigbiuro@gmail.com">ptigbiuro@gmail.com</a>
+              <a href="mailto:biuro@ptig.pl">biuro@ptig.pl</a>
             </p>
           </div>
           <ul className={styles.brands}>
@@ -77,8 +78,13 @@ const Footer = ({ siteTitle }) => {
               </a>
             </li>
             <li className={styles.brand}>
-              <a href="http://gaming.ptig.pl" rel="noopener noreferrer" target="_blank">
-                <img src={gamepad} alt="PtigGaming" />
+              <a href="https://www.linkedin.com/company/polskie-towarzystwo-informatyk%C3%B3w-i-grafik%C3%B3w/" rel="noopener noreferrer" target="_blank">
+                <img src={linkedin} alt="LinkedIn" />
+              </a>
+            </li>
+            <li className={styles.brand}>
+              <a href="https://www.instagram.com/ptig.pl/" rel="noopener noreferrer" target="_blank">
+                <img src={ig} alt="Instagram" />
               </a>
             </li>
           </ul>

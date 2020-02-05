@@ -40,7 +40,7 @@ const ArticleView = props => {
     let formattedText = text;
 
     if (dictionary && dictionary.length > 0) {
-      const textWithDictionaryItems = dictionary.map(item => {
+      dictionary.map(item => {
         formattedText = reactStringReplace(formattedText, item.keyword, (match, i) => (
           <Link
             key={i}
@@ -75,7 +75,6 @@ const ArticleView = props => {
               {article &&
                 article.gallery_images.map(image => (
                   <picture className={styles.image}>
-                    {console.log(image)}
                     <a
                       href={`${process.env.REACT_APP_API_URL}${image.url}`}
                       target="_blank"

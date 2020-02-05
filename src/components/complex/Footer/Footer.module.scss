@@ -19,9 +19,9 @@
     will-change: opacity, translate;
 
     &:hover {
-      -webkit-transform: translateY(-3px);
-      -ms-transform: translateY(-3px);
-      transform: translateY(-3px);
+      -webkit-transform: translateY(-1px);
+      -ms-transform: translateY(-1px);
+      transform: translateY(-1px);
       opacity: 0.5;
     }
   }
@@ -79,7 +79,9 @@
       .brand {
         list-style: none;
         padding: 8px;
-        margin: 0;
+        border: 1px solid #d1d1d14d;
+        border-radius: 50px;
+        margin: 3px;
 
         a {
           display: -webkit-box;
@@ -88,14 +90,19 @@
         }
 
         img {
-          width: 30px;
-          height: 30px;
+          width: 20px;
+          height: 20px;
         }
       }
     }
 
     .section {
       padding: 20px;
+
+      div a {
+        border-bottom: dotted 1px;
+        text-transform: initial;
+      }
 
       dd {
         padding: 3px 0;
