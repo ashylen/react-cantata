@@ -30,6 +30,7 @@ const TripView = props => {
     };
 
     fetchData();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   return (

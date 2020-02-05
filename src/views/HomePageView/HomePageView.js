@@ -28,6 +28,8 @@ import ContactView from '../ContactView/ContactView';
 import MainTemplate from '../../templates/MainTemplate';
 import AddContentForm from '../../components/complex/AddContentForm/AddContentForm';
 
+const ArrowButton = ()=> <button></button>
+
 class HomePageView extends Component {
   state = {
     isFetching: true,
@@ -69,8 +71,8 @@ class HomePageView extends Component {
     slidesToShow: 1,
     slidesToScroll: 1,
     lazyLoad: true,
-    nextArrow: <button></button>,
-    prevArrow: <button></button>,
+    nextArrow: <ArrowButton/>,
+    prevArrow: <ArrowButton/>,
 
     responsive: [
       {

@@ -26,6 +26,9 @@ import ScrollTop from '../../hoc/ScrollTop';
 // przerobic wszystkie requesty na try catch i uzeby uzywaly axiosauth/nonauth
 // Ulepszyć paginacje artykułów?
 const Root = () => {
+  console.log('%c JS ',
+            'background: yellow; color: #111; font-size: 7.3rem; font-weight: bolder; font-family: Arial; padding: 120px 0 10px 70px; margin: .1em 0' );
+  console.log(`%c${'Designed and coded by Dominik Urban in React. \nLooking for a Web Developer? \nFind me at Github: \nhttps://github.com/ashylen \nor contact me via email: \ndominik.urban@tutamail.com  '}`, `color: yellow; font-size: 18px;`)
   return (
     <Provider store={store}>
       <ConnectedRouter history={history}>

@@ -34,6 +34,7 @@ const ArticleView = props => {
     };
 
     fetchData();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   const checkForKeywords = text => {
