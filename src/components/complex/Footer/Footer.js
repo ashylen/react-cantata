@@ -10,10 +10,8 @@ import { routes } from '../../../routes';
 import styles from './Footer.module.scss';
 import { logout } from '../../../actions/usersActions';
 
-import logoPtig from '../../../assets/images/logo-ptig.png';
 import facebook from '../../../assets/images/facebook.svg';
 import yt from '../../../assets/images/yt.svg';
-import google from '../../../assets/images/google.svg';
 import linkedin from '../../../assets/images/linkedin.svg';
 import ig from '../../../assets/images/ig.svg';
 
@@ -21,7 +19,7 @@ import ig from '../../../assets/images/ig.svg';
 import Button from '../../simple/Button/Button';
 
 const Footer = ({ siteTitle }) => {
-  const { user } = useSelector(state => ({ user: state.users.user }));
+  const { user } = useSelector((state) => ({ user: state.users.user }));
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -30,82 +28,63 @@ const Footer = ({ siteTitle }) => {
 
   return (
     <footer id="footer" className={styles.footer}>
-      <div className={styles.generalInfo}>
-        <section className={styles.section}>
-          Witryna stworzona przez:
-          <h3 className={styles.heading}>Polskie Towarzystwo Informatyków i Grafików</h3>
-          <div>
+      <div className={styles.copy}>
+        <span>
+          Copyright &copy; 2019 - {new Date().getFullYear()} Wszystkie prawa zastrzeżone | Witryna
+          stworzona przez{' '}
+          <a href="https://pingwinit.com/" rel="noopener noreferrer" target="_blank">
+            PingWin IT
+          </a>
+        </span>
+        <ul className={styles.brands}>
+          <li className={styles.brand}>
             <a
-              className={styles.moreInfo}
-              href="https://ptig.pl"
+              href="https://www.facebook.com/pingwinitcom/"
               rel="noopener noreferrer"
               target="_blank"
             >
-              DOWIEDZ SIĘ WIĘCEJ
+              <img src={facebook} alt="PingWinIT - Facebook" />
             </a>
-          </div>
-        </section>
-        <section className={styles.section}>
-          <h3 className={styles.heading}>Kontakt</h3>
-          <div>
-            <p>Telefon</p>
-            <p>
-              <a href="tel:+48736839403">+48 736 839 403</a>
-            </p>
-            <p>Email</p>
-            <p>
-              <a href="mailto:biuro@ptig.pl">biuro@ptig.pl</a>
-            </p>
-          </div>
-          <ul className={styles.brands}>
-            <li className={styles.brand}>
-              <a href="https://www.facebook.com/ptigpl/" rel="noopener noreferrer" target="_blank">
-                <img src={facebook} alt="PtigFacebook" />
-              </a>
-            </li>
-            <li className={styles.brand}>
-              <a
-                href="https://www.youtube.com/channel/UC2NDhkD7CAMXYtFSeTr5BVg"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <img src={yt} alt="PtigFacebook" />
-              </a>
-            </li>
-            <li className={styles.brand}>
-              <a href="https://g.page/ptigbc/review" rel="noopener noreferrer" target="_blank">
-                <img src={google} alt="PtigGoogle" />
-              </a>
-            </li>
-            <li className={styles.brand}>
-              <a href="https://www.linkedin.com/company/polskie-towarzystwo-informatyk%C3%B3w-i-grafik%C3%B3w/" rel="noopener noreferrer" target="_blank">
-                <img src={linkedin} alt="LinkedIn" />
-              </a>
-            </li>
-            <li className={styles.brand}>
-              <a href="https://www.instagram.com/ptig.pl/" rel="noopener noreferrer" target="_blank">
-                <img src={ig} alt="Instagram" />
-              </a>
-            </li>
-          </ul>
-        </section>
-      </div>
-      <div className={styles.copy}>
-        <span>&copy; 2019 Polskie Towarzystwo Informatyków i Grafików</span>
-        <p className={styles.logo}>
-          <a href="https://ptig.pl" target="_blank" rel="noopener noreferrer">
-            <img src={logoPtig} alt="PTIG-LOGO" />
-          </a>
-        </p>
+          </li>
+          <li className={styles.brand}>
+            <a
+              href="https://www.instagram.com/pingwinit/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img src={ig} alt="PingWinIT - Instagram" />
+            </a>
+          </li>
+          <li className={styles.brand}>
+            <a
+              href="https://www.youtube.com/channel/UCldURYQPvMglq7bp-AUGd9w"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img src={yt} alt="PingWinIT - Youtube" />
+            </a>
+          </li>
+          <li className={styles.brand}>
+            <a
+              href="https://www.linkedin.com/company/pingwinit/"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <img src={linkedin} alt="PingWinIT -LinkedIn" />
+            </a>
+          </li>
+        </ul>
       </div>
       <div className={styles.loginButton}>
         <Link to={routes.login}>Admin</Link>
       </div>
-      {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated') && (
-        <div className={styles.logoutButton}>
-          <Button onClick={() => handleLogout()}>Wyloguj</Button>
-        </div>
-      )}
+      {!!user &&
+        user.role &&
+        (user.role.name === 'Administrator' || user.role.name === 'Authenticated') && (
+          <div className={styles.logoutButton}>
+            <Button onClick={() => handleLogout()}>Wyloguj</Button>
+          </div>
+        )}
     </footer>
   );
 };

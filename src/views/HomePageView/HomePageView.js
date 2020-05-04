@@ -28,7 +28,7 @@ import ContactView from '../ContactView/ContactView';
 import MainTemplate from '../../templates/MainTemplate';
 import AddContentForm from '../../components/complex/AddContentForm/AddContentForm';
 
-const ArrowButton = ()=> <button></button>
+const ArrowButton = () => <button></button>;
 
 class HomePageView extends Component {
   state = {
@@ -46,7 +46,7 @@ class HomePageView extends Component {
     }
   }
 
-  handleSpecimenDelete = async id => {
+  handleSpecimenDelete = async (id) => {
     const { deleteSpecimen, fetchSpecimens } = this.props;
     this.setState({ isFetching: true });
 
@@ -65,14 +65,14 @@ class HomePageView extends Component {
 
   settings = {
     dots: false,
-    arrows: true,
+    arrows: false,
     infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     lazyLoad: true,
-    nextArrow: <ArrowButton/>,
-    prevArrow: <ArrowButton/>,
+    nextArrow: <ArrowButton />,
+    prevArrow: <ArrowButton />,
 
     responsive: [
       {
@@ -112,48 +112,53 @@ class HomePageView extends Component {
 
             <Slider {...this.settings}>
               {!!specimens
-                ? specimens.map(item => (
-                  <div className={styles.inner} key={item.id}>
-                    <div
-                      className={classNames(styles.description, { [styles.full]: !item.image })}
-                    >
-                      <TimelineHeader secondary title={item.family}>
-                        {item.subText}
-                      </TimelineHeader>
-                      <Box title={item.title} description={item.description} />
+                ? specimens.map((item) => (
+                    <div className={styles.inner} key={item.id}>
+                      <div
+                        className={classNames(styles.description, { [styles.full]: !item.image })}
+                      >
+                        <TimelineHeader secondary title={item.family}>
+                          {item.subText}
+                        </TimelineHeader>
+                        <Box title={item.title} description={item.description} />
 
-                      {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
-                        <Button
-                          cssClass="absoluteTR"
-                          onClick={() => this.handleSpecimenDelete(item.id)}
-                        >
-                          Usuń
-                          </Button>
+                        {!!user &&
+                          user.role &&
+                          (user.role.name === 'Administrator' ||
+                            user.role.name === 'Authenticated') && (
+                            <Button
+                              cssClass="absoluteTR"
+                              onClick={() => this.handleSpecimenDelete(item.id)}
+                            >
+                              Usuń
+                            </Button>
+                          )}
+                      </div>
+                      {item.image && (
+                        <div className={styles.image}>
+                          <img
+                            src={`${process.env.REACT_APP_API_URL}${item.image.url}`}
+                            alt={item.image.name}
+                          />
+                        </div>
                       )}
                     </div>
-                    {item.image && (
-                      <div className={styles.image}>
-                        <img
-                          src={`${process.env.REACT_APP_API_URL}${item.image.url}`}
-                          alt={item.image.name}
-                        />
-                      </div>
-                    )}
-                  </div>
-                ))
+                  ))
                 : null}
             </Slider>
 
-            {!!user && user.role && (user.role.name === 'Administrator' || user.role.name === 'Authenticated' ) && (
-              <Button
-                cssClass="buttonFixed"
-                onClick={() => {
-                  openSpecimensModal(false, null);
-                }}
-              >
-                +
-              </Button>
-            )}
+            {!!user &&
+              user.role &&
+              (user.role.name === 'Administrator' || user.role.name === 'Authenticated') && (
+                <Button
+                  cssClass="buttonFixed"
+                  onClick={() => {
+                    openSpecimensModal(false, null);
+                  }}
+                >
+                  +
+                </Button>
+              )}
           </div>
         </article>
         <ContactView />
@@ -180,7 +185,7 @@ HomePageView.propTypes = {
   ),
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { specimens } = state.specimens;
   const { user } = state.users;
   const { isModalOpen } = state.modals.specimens;
@@ -188,7 +193,7 @@ const mapStateToProps = state => {
   return { specimens, isModalOpen, user };
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   deleteSpecimen: bindActionCreators(specimensActions.deleteSpecimen, dispatch),
   fetchSpecimens: bindActionCreators(specimensActions.fetchSpecimens, dispatch),
   closeSpecimensModal: bindActionCreators(modalsActions.closeSpecimensModal, dispatch),
